@@ -45,3 +45,23 @@ We use `CONCAT` to add `claim.id` value to error message.
 ```sql
 DROP TRIGGER IF EXISTS claims_log_create;
 ```
+
+## Variables in trigger
+
+```sql
+DELIMITER //
+CREATE TRIGGER claims_before_update BEFORE UPDATE ON claims 
+FOR EACH ROW
+BEGIN
+  SET @product_type = (SELECT `type` FROM products WHERE id = NEW.product_id);
+
+  INSERT INTO claims_log (claim_id, product_type, submitted_at)
+  VALUES (NEW.id, @product_type, NOW());
+END //
+DELIMITER ;
+```
+As we can see, to declare variable in MySQL trigger we can use expression:
+
+```sql
+SET @product_type = 123;
+```
