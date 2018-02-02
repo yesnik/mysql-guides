@@ -18,3 +18,9 @@ BEGIN
 END //
 DELIMITER ;
 ```
+
+## Drop trigger
+
+```sql
+DROP TRIGGER IF EXISTS claims_log_create;
+```
