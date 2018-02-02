@@ -19,6 +19,27 @@ END //
 DELIMITER ;
 ```
 
+### Throw exception in trigger
+
+```sql
+CREATE TRIGGER claims_log_create AFTER UPDATE ON claims 
+FOR EACH ROW
+BEGIN
+  IF EXISTS (SELECT 1 FROM claims_log WHERE claim_id = NEW.id) THEN
+    SET @message_text = CONCAT('claims_log was already created for claim.id = ', NEW.id);
+    SIGNAL SQLSTATE '45000' SET message_text = @message_text;
+  END IF;
+     
+  INSERT INTO claims_log (claim_id, submitted_at)
+  VALUES (NEW.id, NOW());
+END //
+DELIMITER ;
+```
+
+This trigger will throw our custom error `Error SQL (1644): claims_log was already created for claim.id = 1985` if record for passed claim.id already exists.
+
+We use `CONCAT` to add `claim.id` value to error message.
+
 ## Drop trigger
 
 ```sql
