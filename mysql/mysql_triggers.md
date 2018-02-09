@@ -12,9 +12,9 @@ CREATE TRIGGER claims_log_create AFTER UPDATE ON claims
 FOR EACH ROW
 BEGIN
   IF NEW.status = 150 THEN
-	  INSERT INTO claims_log (claim_id, submitted_at)
-	  VALUES (NEW.id, NOW());
-	END IF;
+    INSERT INTO claims_log (claim_id, submitted_at)
+    VALUES (NEW.id, NOW());
+  END IF;
 END //
 DELIMITER ;
 ```
