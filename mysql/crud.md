@@ -1,6 +1,6 @@
 # MySQL CRUD operations
 
-## INSERT IGNORE
+## Ignore insert
 
 If you want to ignore insert that violates unique constraint in table:
 
