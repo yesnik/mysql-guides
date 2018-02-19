@@ -42,7 +42,7 @@ We use `CONCAT` to add `claim.id` value to error message.
 
 ### Trigger for created_at, updated_at
 
-This triggers will help you if MySQL version is 5.5.
+These triggers will help you if MySQL version is 5.5.
 
 ```sql
 CREATE TRIGGER claims_calls__before_insert
