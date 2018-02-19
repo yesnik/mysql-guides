@@ -42,6 +42,8 @@ We use `CONCAT` to add `claim.id` value to error message.
 
 ### Trigger for created_at, updated_at
 
+This triggers will help you if MySQL version is 5.5.
+
 ```sql
 CREATE TRIGGER claims_calls__before_insert
 BEFORE INSERT ON claims_calls
@@ -50,6 +52,19 @@ FOR EACH ROW SET NEW.created_at = NOW(), NEW.updated_at = NOW();
 CREATE TRIGGER claims_calls__before_update
 BEFORE UPDATE ON claims_calls
 FOR EACH ROW SET NEW.created_at = OLD.created_at, NEW.updated_at = NOW();
+```
+
+If your MySQL version is 5.6 and higher, you can get the same result easier:
+
+```sql
+CREATE TABLE claims_calls (
+  id INT NOT NULL AUTO_INCREMENT,
+  claim_id INT NULL,
+  call_number INT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE now(),
+  PRIMARY KEY(id)
+);
 ```
 
 ## Drop trigger
