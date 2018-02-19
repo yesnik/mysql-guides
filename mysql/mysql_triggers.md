@@ -40,6 +40,18 @@ This trigger will throw our custom error `Error SQL (1644): claims_log was alrea
 
 We use `CONCAT` to add `claim.id` value to error message.
 
+### Trigger for created_at, updated_at
+
+```sql
+CREATE TRIGGER claims_calls__before_insert
+BEFORE INSERT ON claims_calls
+FOR EACH ROW SET NEW.created_at = NOW(), NEW.updated_at = NOW();
+
+CREATE TRIGGER claims_calls__before_update
+BEFORE UPDATE ON claims_calls
+FOR EACH ROW SET NEW.created_at = OLD.created_at, NEW.updated_at = NOW();
+```
+
 ## Drop trigger
 
 ```sql
