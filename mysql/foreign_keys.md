@@ -33,6 +33,6 @@ We need to do this in two steps: delete existing key and then create it.
 ALTER TABLE `claims_log` DROP FOREIGN KEY `fk_claims_log_claim_id`;
 
 ALTER TABLE `claims_log`
-ADD CONSTRAINT `fk_claims_log_claim_id` FOREIGN KEY (`claim_id`) 
-REFERENCES `claims` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_claims_log_claim_id` FOREIGN KEY (`claim_id`) 
+  REFERENCES `claims` (`id`) ON DELETE CASCADE;
 ```
