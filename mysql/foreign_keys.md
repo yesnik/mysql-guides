@@ -10,6 +10,7 @@ CREATE TABLE books (
   author_id INT(11) UNSIGNED NOT NULL,
   -- ... ,
   CONSTRAINT fk_books_author_id FOREIGN KEY (author_id) REFERENCES authors (id) ON DELETE CASCADE
+);
 ```
 
 ### With alter table query
