@@ -2,6 +2,8 @@
 
 ## Create trigger
 
+*Important*: Creating trigger locks table. It took *48 sec.* to add trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
+
 ### Trigger that makes insert in another table on condition
 
 ```sql
@@ -68,6 +70,8 @@ CREATE TABLE claims_calls (
 ```
 
 ## Drop trigger
+
+*Important*: Dropping trigger locks table. It took *38 sec.* to drop trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
 
 ```sql
 DROP TRIGGER IF EXISTS claims_log_create;
