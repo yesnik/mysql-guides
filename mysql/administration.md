@@ -1,5 +1,25 @@
 # MySQL administration
 
+## MySQL dump
+
+### Create database dump
+
+```
+mysqldump -u USER -pPASSWORD DATABASE | gzip > /path/to/outputfile.sql.gz
+```
+
+### Import database dump
+
+- Way 1
+```
+gunzip < /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
+```
+
+- Way 2
+```
+zcat /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
+```
+
 ## Reset MySQL password for root
 
 *Note:* We are talking about MariaDB
