@@ -55,3 +55,9 @@ sudo kill `cat /var/run/mariadb/mariadb.pid`
 ```
 service mariadb start
 ```
+
+## Show lock status of tables
+
+```sql
+SHOW OPEN TABLES
+```
