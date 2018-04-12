@@ -20,7 +20,7 @@ zcat /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
 ```
 - **.zip archive**
 ```
-unzip -p db-dump.zip | mysql -u root -ppassword
+unzip -p db-dump.zip | mysql -u USER -pPASSWORD DATABASE
 ```
 Here `-p` flag pipes the output.
 
