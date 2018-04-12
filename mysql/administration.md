@@ -10,15 +10,19 @@ mysqldump -u USER -pPASSWORD DATABASE | gzip > /path/to/outputfile.sql.gz
 
 ### Import database dump
 
-- Way 1
+- **.gz archive**
 ```
 gunzip < /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
 ```
-
-- Way 2
+or
 ```
 zcat /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
 ```
+- **.zip archive**
+```
+unzip -p db-dump.zip | mysql -u root -ppassword
+```
+Here `-p` flag pipes the output.
 
 ## Reset MySQL password for root
 
