@@ -15,6 +15,16 @@ SELECT SUM(alias = 'base') AS base, COUNT(*) AS total FROM products_forms;
 +------+-------+
 ```
 
+## Show rows with absent foreign key
+
+```sql
+SELECT articles.id FROM articles a
+LEFT JOIN users u ON u.id = a.user_id
+WHERE u.id IS NULL
+```
+
+This query will select ID of articles that don't have authors in corresponding table.
+
 ## Ignore insert
 
 If you want to ignore insert that violates unique constraint in table:
