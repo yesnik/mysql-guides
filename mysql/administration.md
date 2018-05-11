@@ -80,3 +80,10 @@ SHOW USER_STATISTICS;
 SHOW INDEX_STATISTICS;
 SHOW TABLE_STATISTICS;
 ```
+
+## Show MySQL processes
+
+```sql
+SHOW FULL PROCESSLIST;
+```
+*Note:* Your user must have permission to view processes.
