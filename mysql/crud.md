@@ -18,11 +18,14 @@ SELECT SUM(alias = 'base') AS base, COUNT(*) AS total FROM products_forms;
 ## Group records by hour
 
 ```sql
-SELECT counted_at, sum(claims_count), sum(fast_claims_count) FROM claims_count
-GROUP BY HOUR(counted_at)
+SELECT count_interval_start, sum(claims_amount), sum(fast_claims_amount)
+FROM claims_amount
+GROUP BY HOUR(count_interval_start)
 ```
 
 Instead of `HOUR` we can use: `DAY()`, `WEEK()`, `MONTH()`, `QUARTER()`, `YEAR()`
+
+*Note:* Column `count_interval_start` has `TIMESTAMP` type here.
 
 ## Show orphan rows
 
