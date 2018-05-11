@@ -63,3 +63,9 @@ to see threads belonging to other accounts.
 ```sql
 GRANT PROCESS ON *.* TO 'kenny'@'%';
 ```
+
+## Grant permission to view processes
+
+```sql
+GRANT PROCESS ON database.* TO user@'localhost';
+```
