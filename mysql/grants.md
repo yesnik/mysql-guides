@@ -12,6 +12,11 @@ SHOW GRANTS FOR 'kenny'@'%';
 GRANT ALL ON *.* TO 'myuser'@'%';
 FLUSH PRIVILEGES;
 ```
+Another way:
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'kenny'@'%' IDENTIFIED BY 'some_password' WITH GRANT OPTION;
+```
 
 ## Grant SELECT
 
