@@ -15,15 +15,23 @@ SELECT SUM(alias = 'base') AS base, COUNT(*) AS total FROM products_forms;
 +------+-------+
 ```
 
-## Show rows with absent foreign key
+## Show orphan rows
 
 ```sql
-SELECT articles.id FROM articles a
+SELECT a.id FROM articles a
 LEFT JOIN users u ON u.id = a.user_id
 WHERE u.id IS NULL
 ```
 
 This query will select ID of articles that don't have authors in corresponding table.
+
+## Delete orphan rows
+
+```sql
+DELETE a.* FROM articles a
+LEFT JOIN users u ON u.id = a.user_id
+WHERE u.id IS NULL
+```
 
 ## Ignore insert
 
