@@ -65,3 +65,18 @@ service mariadb start
 ```sql
 SHOW OPEN TABLES
 ```
+
+## Show MySQL variables
+
+```sql
+SHOW VARIABLES;
+```
+
+## Show statistics
+
+```sql
+SHOW CLIENT_STATISTICS;
+SHOW USER_STATISTICS;
+SHOW INDEX_STATISTICS;
+SHOW TABLE_STATISTICS;
+```
