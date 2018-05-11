@@ -8,14 +8,36 @@ SHOW GRANTS FOR 'kenny'@'%';
 
 ## Grant permission to do everything
 
-```sql
-GRANT ALL ON *.* TO 'myuser'@'%';
-FLUSH PRIVILEGES;
-```
-Another way:
+### For all databases
+
+*Without password definition:*
 
 ```sql
-GRANT ALL PRIVILEGES ON *.* TO 'kenny'@'%' IDENTIFIED BY 'some_password' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+*With password definition:*
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY 'some_password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+### For one database
+
+*Without password definition:*
+
+```sql
+GRANT ALL PRIVILEGES ON sales.* TO 'myuser'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+*With password definition:*
+
+```sql
+GRANT ALL PRIVILEGES ON sales.* TO 'myuser'@'%' IDENTIFIED BY 'some_password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 ```
 
 ## Grant SELECT
