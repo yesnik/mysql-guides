@@ -36,3 +36,17 @@ ALTER TABLE `claims_log`
   ADD CONSTRAINT `fk_claims_log_claim_id` FOREIGN KEY (`claim_id`) 
   REFERENCES `claims` (`id`) ON DELETE CASCADE;
 ```
+
+## Remove foreign key
+
+We need to know foreign key's name to remove it from table:
+
+```sql
+ALTER TABLE claims_indeces DROP FOREIGN KEY claims_indeces_ibfk_1;
+```
+
+*Note:* This query will help you to know the foreign key's name:
+
+```sql
+SHOW CREATE TABLE table_name;
+```
