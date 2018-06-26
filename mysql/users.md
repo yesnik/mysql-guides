@@ -22,3 +22,9 @@ SELECT User, Host FROM mysql.user WHERE Host <> 'localhost';
 | vo             | vp.loop.com        |
 +----------------+--------------------+
 ```
+
+## Update root user password
+
+```bash
+mysqladmin -u root -pMyCurrentPassword password
+```
