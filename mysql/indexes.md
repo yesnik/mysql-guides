@@ -30,6 +30,17 @@ Creating index will lock your table for insert and update. Lock time depends on 
 DROP INDEX `created_at` ON claims;
 ```
 
+### Drop unique index
+
+- Define name of unique key:
+```sql
+SHOW CREATE TABLE article;
+```
+- Drop index by name:
+```sql
+ALTER TABLE article DROP INDEX UNIQ_23AOR66534345B45;
+```
+
 ## Find unused index in MySQL
 
 For MySQL >= 5.6
