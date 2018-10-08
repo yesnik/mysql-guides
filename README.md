@@ -1,3 +1,3 @@
-# SQL Syntax
+# SQL Guides
 
-SQL syntax examples for MySQL, PostgreSQL
+SQL tips and solutions for MySQL, PostgreSQL
