@@ -1,5 +1,11 @@
 # Manage MySQL DB structure
 
+## Show create table query
+
+```sql
+SHOW CREATE TABLE articles;
+```
+
 ## Change column's type
 
 ```sql
