@@ -174,7 +174,7 @@ CALL table_test_populate();
 3. Open *first* terminal and connect to database. Update almost all rows - with `id >= 1000`:
 
 ```sql
-update test set amount = amount + 1 where id >= 1000;
+UPDATE test SET amount = amount + 1 WHERE id >= 1000;
 ```
 
 4. While previous query is running, open *second* terminal and run queries:
@@ -184,16 +184,16 @@ update test set amount = amount + 1 where id >= 1000;
 *Update*
 
 ```sql
-update test set amount2 = 500 where id = 10;
-Query OK, 1 row affected (0.58 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
+UPDATE test SET amount2 = 500 WHERE id = 10;
+-- Query OK, 1 row affected (0.58 sec)
+-- Rows matched: 1  Changed: 1  Warnings: 0
 ```
 
 *Delete*
 
 ```sql
-delete from test where id = 500;
-Query OK, 1 row affected (0.08 sec)
+DELETE FROM test WHERE id = 500;
+-- Query OK, 1 row affected (0.08 sec)
 ```
 
 **if id >= 1000 - BLOCKED**
@@ -201,14 +201,14 @@ Query OK, 1 row affected (0.08 sec)
 *Update*
 
 ```sql
-update test set amount2 = 500 where id = 1005;
-Query OK, 1 row affected (16.57 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
+UPDATE test SET amount2 = 500 WHERE id = 1005;
+-- Query OK, 1 row affected (16.57 sec)
+-- Rows matched: 1  Changed: 1  Warnings: 0
 ```
 
 *Delete*
 
 ```sql
-delete from test where id = 1005;
-Query OK, 1 row affected (17.95 sec)
+DELETE FROM test WHERE id = 1005;
+-- Query OK, 1 row affected (17.95 sec)
 ```
