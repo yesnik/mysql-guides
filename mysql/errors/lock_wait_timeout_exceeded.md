@@ -212,3 +212,10 @@ UPDATE test SET amount2 = 500 WHERE id = 1005;
 DELETE FROM test WHERE id = 1005;
 -- Query OK, 1 row affected (17.95 sec)
 ```
+
+** Insert - NOT blocked**
+
+```sql
+INSERT INTO test (amount, amount2) VALUES (11, 22);
+-- Query OK, 1 row affected (0.01 sec)
+```
