@@ -94,3 +94,19 @@ delete from test where id = 2;
 delete from test where id = 1;
 -- Query OK, 1 row affected (0.00 sec)
 ```
+
+5. Let's see process list. In our second terminal execute query:
+
+```sql
+show full processlist;
++-------+------+-----------+-------+---------+------+-------+-----------------------+----------+
+| Id    | User | Host      | db    | Command | Time | State | Info                  | Progress |
++-------+------+-----------+-------+---------+------+-------+-----------------------+----------+
+| 46979 | root | localhost | sales | Sleep   |  950 |       | NULL                  |    0.000 |
+| 47160 | root | localhost | sales | Query   |    0 | init  | show full processlist |    0.000 |
++-------+------+-----------+-------+---------+------+-------+-----------------------+----------+
+2 rows in set (0.00 sec)
+```
+
+As we can see process `46979` is in `Sleep` and it lasts 950 seconds. 
+We know that it's a process of MySQL connection in our *first* terminal.
