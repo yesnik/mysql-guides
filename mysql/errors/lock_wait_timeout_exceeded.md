@@ -35,6 +35,8 @@ Default value is 50.
 
 ## Reproduce lock wait timeout exceeded error
 
+### Example 1. Not finished transaction
+
 *Note:* In this example we are using *10.1.33-MariaDB MariaDB Server*, innodb version: *5.6.39*.
 
 1. In your test MySQL database create table `test` and populate it with several records:
@@ -50,7 +52,7 @@ INSERT INTO test (`id`) values (1), (2), (3);
 ```
 
 2. Open *first* terminal window and connect to database. Open transaction and execute query on deleting records. 
-Don't close transaction yet.
+*Don't* close transaction yet.
 
 ```sql
 BEGIN;
