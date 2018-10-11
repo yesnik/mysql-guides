@@ -110,3 +110,21 @@ show full processlist;
 
 As we can see process `46979` is in `Sleep` and it lasts 950 seconds. 
 We know that it's a process of MySQL connection in our *first* terminal.
+
+Execute query to kill blocking process:
+
+```sql
+kill 46979;
+```
+
+6. Records in table were not touched by killed process:
+
+```sql
+select * from test;
++----+
+| id |
++----+
+|  2 |
+|  3 |
++----+
+```
