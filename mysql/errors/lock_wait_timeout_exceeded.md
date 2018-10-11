@@ -130,3 +130,85 @@ select * from test;
 |  3 |
 +----+
 ```
+
+### Example 2. Update of many records in big table
+
+1. Create table:
+
+```sql
+CREATE TABLE `test` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`amount` INT(11) NULL DEFAULT '0',
+	`amount2` INT(11) NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB;
+```
+
+2. Populate table with data. Create procedure that generates 1 million of rows (~ 4.5 min on my PC):
+
+```sql
+DROP PROCEDURE IF EXISTS table_test_populate;
+
+DELIMITER $$
+CREATE PROCEDURE table_test_populate()
+BEGIN
+  DECLARE i INT DEFAULT 0;
+  WHILE i < 1000000 DO
+    INSERT INTO `test` (`amount`,`amount2`) VALUES (
+      FLOOR(RAND()*100),
+      FLOOR(RAND()*100)
+    );
+    SET i = i + 1;
+  END WHILE;
+END$$
+DELIMITER ;
+```
+
+Generate about 10 million of rows in test table, the more the better:
+
+```sql
+CALL table_test_populate();
+```
+
+3. Open *first* terminal and connect to database. Update almost all rows - with `id >= 1000`:
+
+```sql
+update test set amount = amount + 1 where id >= 1000;
+```
+
+4. While previous query is running, open *second* terminal and run queries:
+
+**if id < 1000 - NOT blocked**
+
+*Update*
+
+```sql
+update test set amount2 = 500 where id = 10;
+Query OK, 1 row affected (0.58 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+
+*Delete*
+
+```sql
+delete from test where id = 500;
+Query OK, 1 row affected (0.08 sec)
+```
+
+**if id >= 1000 - BLOCKED**
+
+*Update*
+
+```sql
+update test set amount2 = 500 where id = 1005;
+Query OK, 1 row affected (16.57 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+
+*Delete*
+
+```sql
+delete from test where id = 1005;
+Query OK, 1 row affected (17.95 sec)
+```
