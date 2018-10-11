@@ -213,9 +213,23 @@ DELETE FROM test WHERE id = 1005;
 -- Query OK, 1 row affected (17.95 sec)
 ```
 
-** Insert - NOT blocked**
+**INSERT - NOT blocked**
 
 ```sql
 INSERT INTO test (amount, amount2) VALUES (11, 22);
 -- Query OK, 1 row affected (0.01 sec)
 ```
+
+**SELECT - NOT blocked**
+
+```sql
+SELECT * FROM test WHERE id = 2000;
++------+--------+---------+
+| id   | amount | amount2 |
++------+--------+---------+
+| 2000 |     92 |      17 |
++------+--------+---------+
+1 row in set (0.05 sec)
+```
+*Note:* This query shows `amount` value before the query in the *first* terminal is finished.
+When query in first terminal is finished this SELECT will return `amount = 93`.
