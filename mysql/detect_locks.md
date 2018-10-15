@@ -1,5 +1,6 @@
 # Detect locks
 
+## Show InnoDb status
 ```sql
 SHOW ENGINE innodb STATUS;
 ```
@@ -39,4 +40,12 @@ RECORD LOCKS space id 0 page no 12271151 n bits 272 index `PRIMARY` of table `sa
 RECORD LOCKS space id 0 page no 16782474 n bits 1272 index `created` of table `sales`.`claims_cc` trx id 2F5C54C9F lock mode S
 RECORD LOCKS space id 0 page no 12271152 n bits 280 index `PRIMARY` of table `sales`.`claims_cc` trx id 2F5C54C9F lock mode S locks rec but not gap
 TOO MANY LOCKS PRINTED FOR THIS TRX: SUPPRESSING FURTHER PRINTS
+```
+
+## Info about InnoDb transactions
+
+This query will show current queries, number of locked tables, rows, isolation level etc.
+
+```sql
+SELECT * from INFORMATION_SCHEMA.INNODB_TRX
 ```
