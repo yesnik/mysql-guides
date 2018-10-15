@@ -49,3 +49,11 @@ This query will show current queries, number of locked tables, rows, isolation l
 ```sql
 SELECT * from INFORMATION_SCHEMA.INNODB_TRX
 ```
+
+## Show open tables
+
+This query will show names of currently used tables:
+
+```sql
+show open tables where In_Use > 0 ;
+```
