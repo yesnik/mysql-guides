@@ -42,12 +42,18 @@ RECORD LOCKS space id 0 page no 12271152 n bits 280 index `PRIMARY` of table `sa
 TOO MANY LOCKS PRINTED FOR THIS TRX: SUPPRESSING FURTHER PRINTS
 ```
 
+## Show locked transactions
+
+```sql
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
+```
+
 ## Info about InnoDb transactions
 
 This query will show current queries, number of locked tables, rows, isolation level etc.
 
 ```sql
-SELECT * from INFORMATION_SCHEMA.INNODB_TRX
+SELECT * from INFORMATION_SCHEMA.INNODB_TRX;
 ```
 
 ## Show open tables
@@ -55,5 +61,5 @@ SELECT * from INFORMATION_SCHEMA.INNODB_TRX
 This query will show names of currently used tables:
 
 ```sql
-show open tables where In_Use > 0 ;
+show open tables where In_Use > 0;
 ```
