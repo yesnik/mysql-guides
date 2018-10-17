@@ -7,10 +7,10 @@
 ### Trigger that makes insert in another table on condition
 
 ```sql
-DROP TRIGGER IF EXISTS claims_log_create;
+DROP TRIGGER IF EXISTS claims_log__after_update;
 
 DELIMITER //
-CREATE TRIGGER claims_log_create AFTER UPDATE ON claims 
+CREATE TRIGGER claims_log__after_update AFTER UPDATE ON claims 
 FOR EACH ROW
 BEGIN
   IF NEW.status = 150 THEN
