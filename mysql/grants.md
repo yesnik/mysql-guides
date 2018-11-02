@@ -69,3 +69,17 @@ GRANT PROCESS ON *.* TO 'kenny'@'%';
 ```sql
 GRANT PROCESS ON database.* TO user@'localhost';
 ```
+
+## Allow remote connections
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+If we want to allow user `root` to connect locally:
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
