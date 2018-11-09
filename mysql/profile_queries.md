@@ -26,7 +26,7 @@ After that we can see executed queries:
 
 ```sql
 SELECT * FROM mysql.general_log;
-SELECT * FROM mysql.general_log WHERE event_time > DATE_SUB(NOW(), INTERVAL 1 minute);
+SELECT * FROM mysql.general_log WHERE event_time > DATE_SUB(NOW(), INTERVAL 1 minute) ORDER BY event_time DESC;
 ```
 
 **Important!** Don't forget to turn it off after debugging:
