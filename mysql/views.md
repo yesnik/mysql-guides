@@ -18,6 +18,12 @@ FROM claims_calls
 WITH CHECK OPTION
 ```
 
+## Drop view
+
+```sql
+DROP VIEW IF EXISTS claims_calls;
+```
+
 ## Grant access to view
 
 This query will allow user 'foo' to do following actions with view `claims_calls`:
