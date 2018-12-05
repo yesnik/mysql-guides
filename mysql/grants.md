@@ -5,6 +5,12 @@
 **For current user**
 
 ```sql
+SHOW GRANTS;
+```
+
+**For user kenny**
+
+```sql
 SHOW GRANTS FOR 'kenny'@'%';
 ```
 
