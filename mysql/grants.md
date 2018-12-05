@@ -1,9 +1,17 @@
 # MySQL Grants
 
-## Show user's grants
+## Show grants
+
+**For current user**
 
 ```sql
 SHOW GRANTS FOR 'kenny'@'%';
+```
+
+**For all users**
+
+```sql
+SELECT * FROM information_schema.user_privileges;
 ```
 
 ## Grant permission to do everything
