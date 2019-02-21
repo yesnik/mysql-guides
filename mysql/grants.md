@@ -57,7 +57,17 @@ FLUSH PRIVILEGES;
 ## Grant SELECT
 
 ```sql
-GRANT select ON products TO 'kenny'@'%';
+GRANT select ON sales.products TO 'kenny'@'%';
+FLUSH PRIVILEGES;
+```
+
+## Grant ALTER
+
+Allow user to alter all tables of *sales* database:
+
+```sql
+GRANT ALTER on sales.* to 'kenny'@'%';
+FLUSH PRIVILEGES;
 ```
 
 ## Grant permission to update some columns
