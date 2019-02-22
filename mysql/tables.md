@@ -2,6 +2,12 @@
 
 ## Alter table
 
+### Drop column
+
+```sql
+ALTER TABLE products DROP COLUMN updated_at
+```
+
 ### Set autoincrement
 
 ```sql
