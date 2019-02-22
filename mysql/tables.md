@@ -2,6 +2,14 @@
 
 ## Alter table
 
+### Add column
+
+```sql
+ALTER TABLE products ADD COLUMN category_id INT(11) UNSIGNED NOT NULL;
+
+ALTER TABLE claims_info ADD COLUMN products_point_sales_id INT(11) UNSIGNED AFTER city_name;
+```
+
 ### Drop column
 
 ```sql
