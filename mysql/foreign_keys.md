@@ -22,7 +22,7 @@ ALTER TABLE books
   ON DELETE CASCADE;
 ```
 
-This foreign key adds foreign key to `books` table, on column `author_id`.
+This query adds foreign key to `books` table, on column `author_id`.
 Statement `ON DELETE CASCADE` says that record in `books` table will be deleted if we delete author.
 
 ## Change foreign key
