@@ -78,6 +78,12 @@ Allow user 'kenny' to update only 2 columns in table `products`:
 GRANT UPDATE(status, processed_at) ON products TO 'kenny'@'%';
 ```
 
+If you want to allow user to update one more column:
+
+```sql
+GRANT UPDATE(delivered_at) ON products TO 'kenny'@'%';
+```
+
 ## Grant permission to see other account's server processes
 
 The `PROCESS` privilege pertains to display of information about the threads 
