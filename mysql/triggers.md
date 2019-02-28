@@ -3,14 +3,14 @@
 ## Show triggers
 
 ```sql
-SHOW TRIGGERS';
+SHOW TRIGGERS;
 ```
 
 or
 
 ```sql
 SELECT trigger_schema, trigger_name, action_statement
-FROM information_schema.triggers
+FROM information_schema.triggers;
 ```
 
 ## Create trigger
