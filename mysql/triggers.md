@@ -1,5 +1,18 @@
 # MySQL triggers
 
+## Show triggers
+
+```sql
+SHOW TRIGGERS';
+```
+
+or
+
+```sql
+SELECT trigger_schema, trigger_name, action_statement
+FROM information_schema.triggers
+```
+
 ## Create trigger
 
 *Important*: Creating trigger locks table. It took *48 sec.* to add trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
