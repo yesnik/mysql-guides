@@ -5,8 +5,6 @@ the same table during a specific period.
 A client session can acquire or release table locks only for itself. 
 It cannot acquire or release table locks for other sessions.
 
-If the session is terminated, either normally or abnormally, MySQL *will release* all the locks implicitly. 
-
 ## Read locks
 
 Read lock is *shared* lock which prevent a write lock is being acquired but not other read locks.
@@ -46,6 +44,14 @@ LOCK TABLE products WRITE;
 
 ... the table until the WRITE lock is released.
 
-### Sources
+## Release locks
+
+```sql
+UNLOCK TABLES;
+```
+
+If the session is terminated, either normally or abnormally, MySQL *will release* all the locks implicitly.
+
+## Sources
 
 - MySQL table locking / [www.mysqltutorial.org](http://www.mysqltutorial.org/mysql-table-locking/)
