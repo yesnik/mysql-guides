@@ -23,6 +23,7 @@ LOCK TABLE products READ;
 *Other sessions*:
 
 - can read table
+- can acquire a READ lock for a table
 - cannot write data to the table until the READ lock is released
 
 ## Write locks
