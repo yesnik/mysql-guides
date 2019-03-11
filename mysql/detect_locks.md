@@ -5,7 +5,35 @@
 SHOW ENGINE innodb STATUS;
 ```
 
-Look at the transactions section:
+Look at `LATEST DETECTED DEADLOCK` section:
+
+```
+------------------------
+LATEST DETECTED DEADLOCK
+------------------------
+190311  4:55:53
+*** (1) TRANSACTION:
+TRANSACTION 427C047E9, ACTIVE 0 sec starting index read
+mysql tables in use 1, locked 1
+LOCK WAIT 2 lock struct(s), heap size 1248, 1 row lock(s)
+MySQL thread id 13858, OS thread handle 0x7f5221746700, query id 937243 192.168.100.25 salesc7 updating
+DELETE FROM `claims_settings` WHERE claim_id IN ('40309331', '40309332', '40309333', '40309334', '40309335', '40309336', '40309337', '40309338', '40309339', '40309340', '40309341', '40309342', '40309343', '40309344', '40309345', '40309346', '40309347', '40309348', '40309349', '40309350')
+*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 0 page no 14977208 n bits 1232 index `claim_id` of table `sales`.`claims_settings` trx id 427C047E9 lock_mode X locks rec but not gap waiting
+*** (2) TRANSACTION:
+TRANSACTION 427C047EA, ACTIVE 0 sec starting index read
+mysql tables in use 1, locked 1
+3 lock struct(s), heap size 1248, 2 row lock(s)
+MySQL thread id 13703, OS thread handle 0x7f5222a61700, query id 937244 192.168.100.25 salesc7 updating
+DELETE FROM `claims_settings` WHERE claim_id IN ('40309331', '40309332', '40309333', '40309334', '40309335', '40309336', '40309337', '40309338', '40309339', '40309340', '40309341', '40309342', '40309343', '40309344', '40309345', '40309346', '40309347', '40309348', '40309349', '40309350')
+*** (2) HOLDS THE LOCK(S):
+RECORD LOCKS space id 0 page no 14977208 n bits 1232 index `claim_id` of table `sales`.`claims_settings` trx id 427C047EA lock_mode X locks rec but not gap
+*** (2) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 0 page no 14977208 n bits 1232 index `claim_id` of table `sales`.`claims_settings` trx id 427C047EA lock_mode X waiting
+*** WE ROLL BACK TRANSACTION (1)
+```
+
+Also you can look at the transactions section:
 
 ```
 ------------
