@@ -8,6 +8,12 @@
 mysqldump -u USER -pPASSWORD DATABASE | gzip > /path/to/outputfile.sql.gz
 ```
 
+### Create table dump
+
+```
+mysqldump -u USER -pPASSWORD mydbname --skip-add-drop-table --no-create-info --tables products --where="id > 10000" > products_delta_dump.sql
+```
+
 ### Import database dump
 
 - **.gz archive**
