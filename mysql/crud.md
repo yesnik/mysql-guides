@@ -27,6 +27,16 @@ Instead of `HOUR` we can use: `DAY()`, `WEEK()`, `MONTH()`, `QUARTER()`, `YEAR()
 
 *Note:* Column `count_interval_start` has `TIMESTAMP` type here.
 
+## Concatinate many records into one row
+
+```sql
+SELECT person_id, GROUP_CONCAT(hobbies SEPARATOR ', ')
+FROM peoples_hobbies
+GROUP BY person_id;
+```
+
+See [stackoverflow answer](https://stackoverflow.com/a/276949/1921272).
+
 ## Show orphan rows
 
 ```sql
