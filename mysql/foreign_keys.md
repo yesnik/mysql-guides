@@ -2,6 +2,11 @@
 
 ## Add foreign key
 
+**Important:** Be careful with adding foreign key on production, because it might be a heavy operation for you database. For example, we created empty table and tried to create foreign key to existing big table (12 Gb size, 9 mln rows). This operation *made our database to shut down*. Here is server info:
+
+- mysql Ver 15.1 Distrib 10.1.37-MariaDB, for Linux (x86_64) using readline 5.1.
+- RAM 20Gb
+
 ### With create table query
 
 ```sql
