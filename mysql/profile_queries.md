@@ -25,7 +25,6 @@ SET global log_output = 'table';
 After that we can see executed queries:
 
 ```sql
-SELECT * FROM mysql.general_log;
 SELECT * FROM mysql.general_log WHERE event_time > DATE_SUB(NOW(), INTERVAL 1 minute) ORDER BY event_time DESC;
 ```
 
@@ -34,3 +33,5 @@ SELECT * FROM mysql.general_log WHERE event_time > DATE_SUB(NOW(), INTERVAL 1 mi
 ```sql
 SET GLOBAL general_log = 'OFF';
 ```
+
+**Note:** If you have problems with reading information from the table `general_log`, you can recreate this table (see [stackoverflow](https://stackoverflow.com/a/35372004/1921272)).
