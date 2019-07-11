@@ -79,16 +79,11 @@ FLUSH PRIVILEGES;
 
 ### For one database
 
-*Without password definition:*
-
 ```sql
+-- Without password definition
 GRANT ALL PRIVILEGES ON sales.* TO 'myuser'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-```
 
-*With password definition:*
-
-```sql
+-- With password definition
 GRANT ALL PRIVILEGES ON sales.* TO 'myuser'@'%' IDENTIFIED BY 'some_password' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
