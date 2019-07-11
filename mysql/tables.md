@@ -2,7 +2,7 @@
 
 ## Show tables
 
-### Show tables and view
+### Show tables and views
 
 ```sql
 SHOW TABLES;
