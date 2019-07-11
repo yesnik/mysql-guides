@@ -1,5 +1,19 @@
 # Tables
 
+## Show tables
+
+### Show tables and view
+
+```sql
+SHOW TABLES;
+```
+
+### Show only tables (except views)
+
+```sql
+SHOW FULL TABLES WHERE Table_Type = 'BASE TABLE';
+```
+
 ## Alter table
 
 ### Add column
