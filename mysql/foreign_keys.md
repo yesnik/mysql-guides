@@ -47,7 +47,7 @@ ALTER TABLE `claims_log`
 We need to know foreign key's name to remove it from table:
 
 ```sql
-ALTER TABLE claims_indeces DROP FOREIGN KEY claims_indeces_ibfk_1;
+ALTER TABLE claims_log DROP FOREIGN KEY fk_claims_log_claim_id;
 ```
 
 *Note:* This query will help you to know the foreign key's name:
