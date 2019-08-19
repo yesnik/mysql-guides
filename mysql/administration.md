@@ -4,8 +4,16 @@
 
 ### Create database dump
 
+*Create .gz archive*
+
 ```
-mysqldump -u USER -pPASSWORD DATABASE | gzip > /path/to/outputfile.sql.gz
+mysqldump -u root -p123 DATABASE | gzip > dump.sql.gz
+```
+
+*Create schema only (without data):*
+
+```
+mysqldump --no-data -u root -p123 sales > dump.sql
 ```
 
 ### Create table dump
@@ -69,7 +77,7 @@ service mariadb start
 ## Show lock status of tables
 
 ```sql
-SHOW OPEN TABLES
+SHOW OPEN TABLES;
 ```
 
 ## Show MySQL variables
