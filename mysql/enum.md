@@ -10,7 +10,8 @@ CREATE TABLE `call_results` (
 );
 ```
 
-In this case enum field is not required. If you omit the value of ENUM field in the query the inserted value will be `''` (empty string):
+In this case enum field is not required. 
+If you omit the value of ENUM field in the query the inserted value will be `''` (empty string), because it's the first value in ENUM value definition:
 
 ```sql
 INSERT INTO call_results (title) VALUES ('Hello');
