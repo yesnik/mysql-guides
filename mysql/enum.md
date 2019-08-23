@@ -4,10 +4,9 @@ We can create ENUM field in `CREATE TABLE` statement:
 
 ```sql
 CREATE TABLE `call_results` (
-	`id` INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-
-	`crm_status` ENUM('','E0005','E0006') NOT NULL,
-	title VARCHAR(255) NOT NULL
+  id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  crm_status ENUM('','E0005','E0006') NOT NULL,
+  title VARCHAR(255) NOT NULL
 );
 ```
 
