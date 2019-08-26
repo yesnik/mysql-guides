@@ -30,6 +30,8 @@ ALTER TABLE tbl_name ADD COLUMN column_name column_definition, ALGORITHM=INPLACE
 ```
 Concurrent DML is not permitted when adding an auto-increment column. Data is reorganized substantially, making it an expensive operation.
 
+Some [people say](https://medium.com/practo-engineering/mysql-zero-downtime-schema-update-without-algorithm-inplace-fd427ec5b681) that INPLACE algorithm is not working with big tables.
+
 ### Drop column
 
 ```sql
