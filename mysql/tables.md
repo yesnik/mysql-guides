@@ -23,6 +23,12 @@ ALTER TABLE products ADD COLUMN category_id INT(11) UNSIGNED NOT NULL;
 
 ALTER TABLE claims_info ADD COLUMN products_point_sales_id INT(11) UNSIGNED AFTER city_name;
 ```
+**Important** If MySQL version >= 5.6 you can add column [without locking](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html#online-ddl-column-operations) the whole table:
+
+```sql
+ALTER TABLE tbl_name ADD COLUMN column_name column_definition, ALGORITHM=INPLACE, LOCK=NONE;
+```
+Concurrent DML is not permitted when adding an auto-increment column. Data is reorganized substantially, making it an expensive operation.
 
 ### Drop column
 
