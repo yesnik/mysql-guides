@@ -2,6 +2,14 @@
 
 ## Add ENUM field
 
+### Add to existing table
+
+```sql
+ALTER TABLE call_results ADD COLUMN crm_status2 ENUM('','E0004','E0005') NOT NULL;
+```
+
+### Add with `create table` statement
+
 We can create ENUM field in `CREATE TABLE` statement:
 
 ```sql
