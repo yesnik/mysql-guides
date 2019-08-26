@@ -1,5 +1,7 @@
 # MySQL ENUM field
 
+## Add ENUM field
+
 We can create ENUM field in `CREATE TABLE` statement:
 
 ```sql
@@ -22,3 +24,9 @@ INSERT INTO call_results (title) VALUES ('Hello');
 | id | crm_status | title | 
 | ---: | --- | --- | 
 | 1 |  | Hello | 
+
+## Add value to existing ENUM field
+
+```sql
+ALTER TABLE call_results MODIFY COLUMN crm_status enum('','E0004','E0005') NOT NULL;
+```
