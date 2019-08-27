@@ -9,8 +9,8 @@ DROP PROCEDURE IF EXISTS claims_log_insert;
 
 DELIMITER //
 CREATE PROCEDURE claims_log_insert (
-	IN `claim_id` INT(11),
-	IN `submitted_at` TIMESTAMP
+    IN `claim_id` INT(11),
+    IN `submitted_at` TIMESTAMP
 )
 BEGIN
   INSERT INTO claims_log (claim_id, submitted_at)
