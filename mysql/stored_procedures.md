@@ -31,18 +31,29 @@ DROP PROCEDURE IF EXISTS updateCallResultId;
 
 DELIMITER //
 CREATE PROCEDURE updateCallResultId(
-    IN `claim_id_value` INT(11),
-    IN `call_result_id_value` INT(11)
+	IN `$claim_id` INT(11),
+	IN `$call_result_id` INT(11)
 )
 BEGIN
-    UPDATE claims_cc SET call_result_id = call_result_id_value WHERE claim_id = claim_id_value;
+  IF $call_result_id IS NOT NULL THEN
+  
+    SET @crm_status = (SELECT crm_status FROM call_results WHERE id = $call_result_id);
+  
+    UPDATE claims_cc SET call_result_id = $call_result_id, crm_status = @crm_status
+    WHERE claim_id = $claim_id;
+  END IF;
 END //
 DELIMITER ;
 ```
 
 **Notes:** 
 
-- We have carefully choose name for input variables. If we had chosen name `claim_id`, the call of this procecedure would *update ALL records* in table `claims_cc`.
+- We have carefully choose name for input variables. If we had chosen name `claim_id`, the call of this procecedure would *update ALL records* in table `claims_cc`. It's because the SQL would be:
+```sql
+UPDATE claims_cc SET call_result_id = call_result_id, crm_status = @crm_status
+WHERE claim_id = claim_id;
+```
+- The mode `IN` is the default mode for procedure's parameters. If you don't provide the parameter mode, it will be `IN`.
 
 ## Call stored procedure
 
