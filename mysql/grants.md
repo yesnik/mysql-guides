@@ -83,6 +83,20 @@ GRANT ALL PRIVILEGES ON sales.* TO 'myuser'@'%' IDENTIFIED BY 'some_password' WI
 FLUSH PRIVILEGES;
 ```
 
+## Remove grants
+
+**Remove SELECT grant**
+
+```sql
+REVOKE SELECT ON sales.call_results FROM 'kenny'@'%';
+```
+
+**Remove all privileges**
+
+```sql
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'kenny'@'%';
+```
+
 ## Allow connections
 
 ## Remote connections from any IP
