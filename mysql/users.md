@@ -5,19 +5,25 @@
 - with local access
 
 ```sql
-CREATE USER 'you_user'@'localhost' IDENTIFIED BY 'some_password';
+CREATE USER 'kenny'@'localhost' IDENTIFIED BY 'some_password';
 ```
 
 - with remote access
 
 ```sql
-CREATE USER 'you_user'@'%' IDENTIFIED BY 'some_password';
+CREATE USER 'kenny'@'%' IDENTIFIED BY 'some_password';
+```
+
+## Drop user
+
+```sql
+DROP USER 'kenny'@'%';
 ```
 
 ## Show users with remote access
 
 ```sql
-SELECT User, Host FROM mysql.user WHERE Host <> 'localhost';
+SELECT User, Host FROM mysql.user WHERE Host != 'localhost';
 ```
 
 ```
