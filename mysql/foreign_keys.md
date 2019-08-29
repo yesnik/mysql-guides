@@ -96,3 +96,9 @@ ALTER TABLE claims_log DROP FOREIGN KEY fk_claims_log_claim_id;
 SHOW CREATE TABLE table_name;
 ```
 2. It took 0 sec to drop trigger on the table with size 220 Mb, 0.5 mln rows
+
+## Show foreign keys
+
+```sql
+SELECT TABLE_NAME, COLUMN_NAME, REFERENCED_TABLE_SCHEMA, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME from information_schema.KEY_COLUMN_USAGE;
+```
