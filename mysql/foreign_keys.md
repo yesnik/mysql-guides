@@ -20,7 +20,10 @@ REFERENCES call_results (id);
 -- Query OK, 597870 rows affected (14.43 sec)
 ```
 
-During running this query it was impossible to insert records in the big table `claims_import`.
+During running this query:
+
+- we CANNOT insert, update, delete records in the big table `claims_import`
+- we CAN read
 
 ### With create table query
 
