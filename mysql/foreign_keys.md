@@ -2,10 +2,25 @@
 
 ## Add foreign key
 
-**Important:** Be careful with adding foreign key on production, because it might be a heavy operation for you database. For example, we created empty table and tried to create foreign key to existing big table (12 Gb size, 9 mln rows). This operation *made our database to shut down*. Here is server info:
+**Important notes:** 
+
+1. Be careful with adding foreign key on production, because it might be a heavy operation for you database. 
+For example, we created empty table and tried to create foreign key to existing big table (12 Gb size, 9 mln rows). 
+This operation *made our database to shut down*. Here is server info:
 
 - mysql Ver 15.1 Distrib 10.1.37-MariaDB, for Linux (x86_64) using readline 5.1.
 - RAM 20Gb
+
+2. We tried to add foreign key on big table `claims_import` (220 Mb, 0.5 mln rows) to small one `call_results` (20 rows):
+
+```sql
+ALTER TABLE claims_import 
+ADD CONSTRAINT fk_claims_import_call_result_id FOREIGN KEY (call_result_id) 
+REFERENCES call_results (id);
+-- Query OK, 597870 rows affected (14.43 sec)
+```
+
+During running this query it was impossible to insert records in the big table.
 
 ### With create table query
 
@@ -50,8 +65,10 @@ We need to know foreign key's name to remove it from table:
 ALTER TABLE claims_log DROP FOREIGN KEY fk_claims_log_claim_id;
 ```
 
-*Note:* This query will help you to know the foreign key's name:
+**Notes:** 
 
+1. This query will help you to know the foreign key's name:
 ```sql
 SHOW CREATE TABLE table_name;
 ```
+2. It took 0 sec to drop trigger on the table with size 220 Mb, 0.5 mln rows
