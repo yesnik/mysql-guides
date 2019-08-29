@@ -60,6 +60,10 @@ delete from information_schema.INNODB_SYS_FOREIGN where for_name = 'sales/#sql-1
 -- ERROR 1044 (42000): Access denied for user 'root'@'localhost' to database 'information_schema'
 ```
 
+Why? Because `INFORMATION_SCHEMA` is a database within each MySQL instance, the place that stores information about all the other databases that the MySQL server maintains. The `INFORMATION_SCHEMA` database contains several read-only tables. They are actually views, not base tables, so there are no files associated with them, and you cannot set triggers on them. Also, there is no database directory with that name.
+
+Although you can select `INFORMATION_SCHEMA` as the default database with a USE statement, you can only read the contents of tables, not perform INSERT, UPDATE, or DELETE operations on them.
+
 ### With create table query
 
 ```sql
