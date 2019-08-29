@@ -34,7 +34,8 @@ During running this query *both tables will be locked for modifications*:
 ```sql
 set FOREIGN_KEY_CHECKS=0;
 
-ALTER TABLE claims_import ADD CONSTRAINT fk_claims_import_call_result_id FOREIGN KEY (call_result_id) REFERENCES call_results (id);
+ALTER TABLE claims_import ADD CONSTRAINT fk_claims_import_call_result_id 
+FOREIGN KEY (call_result_id) REFERENCES call_results (id);
 -- Query OK, 0 rows affected (0.00 sec)
 
 set FOREIGN_KEY_CHECKS=1;
@@ -44,7 +45,20 @@ This setting disables foreign key checks for current session only.
 Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
 
 **Note:** We tried to add foreign key to another table (that has 20 inserts per minute), but got an error:
-*ERROR 1823 (HY000): Failed to add the foreign key constraint 'sales/fk_claims_sms_call_result_id' to system tables*
+*ERROR 1823 (HY000): Failed to add the foreign key constraint 'sales/fk_claims_sms_call_result_id' to system tables*.
+
+To fix this try to see system table:
+
+```sql
+select * from information_schema.INNODB_SYS_FOREIGN;
+```
+
+There can be a record for trigger that already exists in this system table. We need to delete it:
+
+```sql
+delete from information_schema.INNODB_SYS_FOREIGN where for_name = 'sales/#sql-10d1_3dcfb';
+-- ERROR 1044 (42000): Access denied for user 'root'@'localhost' to database 'information_schema'
+```
 
 ### With create table query
 
