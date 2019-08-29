@@ -29,6 +29,20 @@ During running this query *both tables will be locked for modifications*:
   - we CANNOT insert, update, delete records 
   - we CAN read
 
+**Add foreign key without locking tables**
+
+```sql
+set FOREIGN_KEY_CHECKS=0;
+
+ALTER TABLE claims_import ADD CONSTRAINT fk_claims_import_call_result_id FOREIGN KEY (call_result_id) REFERENCES call_results (id);
+-- Query OK, 0 rows affected (0.00 sec)
+
+set FOREIGN_KEY_CHECKS=1;
+```
+
+This setting disables foreign key checks for current session only.
+Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions. 
+
 ### With create table query
 
 ```sql
