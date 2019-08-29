@@ -1,5 +1,21 @@
 # MySQL Stored Procedures
 
+## Show stored procedures
+
+This query will show stored procedures where Definer is current user:
+
+```sql
+SHOW PROCEDURE STATUS;
+```
+
+## Show stored procedure source code
+
+To display source code of a particular stored procedure:
+
+```sql
+SHOW CREATE PROCEDURE stored_procedure_name;
+```
+
 ## Create stored procedure
 
 *Example 1*
