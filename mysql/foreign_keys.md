@@ -99,6 +99,14 @@ SHOW CREATE TABLE table_name;
 
 ## Show foreign keys
 
+Show info from [innodb_sys_foreign](https://dev.mysql.com/doc/refman/5.7/en/innodb-sys-foreign-table.html) table:
+
+```sql
+SELECT * from information_schema.INNODB_SYS_FOREIGN;
+```
+
+Show info from [key_column_usage](https://dev.mysql.com/doc/refman/8.0/en/key-column-usage-table.html) table:
+
 ```sql
 SELECT TABLE_NAME, COLUMN_NAME, REFERENCED_TABLE_SCHEMA, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME from information_schema.KEY_COLUMN_USAGE;
 ```
