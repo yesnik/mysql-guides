@@ -20,10 +20,14 @@ REFERENCES call_results (id);
 -- Query OK, 597870 rows affected (14.43 sec)
 ```
 
-During running this query:
+During running this query *both tables will be locked for modifications*:
 
-- we CANNOT insert, update, delete records in the big table `claims_import`
-- we CAN read
+- in the big table `claims_import`:
+  - we CANNOT insert, update, delete records 
+  - we CAN read
+- in small table `call_results`:
+  - we CANNOT insert, update, delete records 
+  - we CAN read
 
 ### With create table query
 
