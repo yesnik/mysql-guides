@@ -29,7 +29,7 @@ During running this query *both tables will be locked for modifications*:
   - we CANNOT insert, update, delete records 
   - we CAN read
 
-**Add foreign key without locking tables**
+**Add foreign key without locking tables (in some cases)**
 
 ```sql
 set FOREIGN_KEY_CHECKS=0;
@@ -41,7 +41,10 @@ set FOREIGN_KEY_CHECKS=1;
 ```
 
 This setting disables foreign key checks for current session only.
-Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions. 
+Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
+
+**Note:** We tried to add foreign key to another table (that has 20 inserts per minute), but got an error:
+*ERROR 1823 (HY000): Failed to add the foreign key constraint 'sales/fk_claims_sms_call_result_id' to system tables*
 
 ### With create table query
 
