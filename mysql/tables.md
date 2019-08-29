@@ -39,9 +39,9 @@ ALTER TABLE claims_cc ADD COLUMN call_result_id INT(11) UNSIGNED AFTER crm_statu
 -- Query OK, 0 rows affected (4 min 10.59 sec)
 ```
 
-It this case table `claims_cc` has size 1.4Gb, 10.5 mln rows.
+Table `claims_cc` params: size 1.4Gb, 10.5 mln rows.
 
-It seems that internally MySQL created copy of the table and then renamed it.
+**Note:** It seems that internally MySQL created copy of the table and then renamed it. So ensure that there is *enough free space* on the server.
 
 ### Drop column
 
