@@ -76,7 +76,7 @@ service mariadb start
 
 ## Duplicate table
 
-To copy with indexes and triggers:
+### Copy with indexes and triggers
 
 ```sql
 DROP TABLE IF EXISTS newtable;
@@ -84,11 +84,13 @@ CREATE TABLE newtable LIKE oldtable;
 INSERT newtable SELECT * FROM oldtable;
 ```
 
-To copy just structure and data:
+### Copy just structure and data
 
 ```sql
 CREATE TABLE newtable AS SELECT * FROM oldtable;
 ```
+
+This will not copy indexes and triggers as the SELECT result is a temporary table and does not "carry" the metadata of the source table.
 
 ## Show lock status of tables
 
