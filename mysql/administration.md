@@ -74,6 +74,22 @@ sudo kill `cat /var/run/mariadb/mariadb.pid`
 service mariadb start
 ```
 
+## Duplicate table
+
+To copy with indexes and triggers:
+
+```sql
+DROP TABLE IF EXISTS newtable;
+CREATE TABLE newtable LIKE oldtable; 
+INSERT newtable SELECT * FROM oldtable;
+```
+
+To copy just structure and data:
+
+```sql
+CREATE TABLE newtable AS SELECT * FROM oldtable;
+```
+
 ## Show lock status of tables
 
 ```sql
