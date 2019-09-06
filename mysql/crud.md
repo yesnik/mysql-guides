@@ -1,5 +1,12 @@
 # MySQL CRUD operations
 
+## Copy data in backup table
+
+```sql
+TRUNCATE TABLE products_backup;
+INSERT INTO products_backup SELECT * FROM products;
+```
+
 ## Select count on condition
 
 Show amount on different conditions:
