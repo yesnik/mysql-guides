@@ -42,6 +42,12 @@ FROM peoples_hobbies
 GROUP BY person_id;
 ```
 
+**Note:** The result is *truncated* to the maximum length that is given by the `group_concat_max_len` system variable, which has a default value of 1024. The value can be set higher, although the effective maximum length of the return value is constrained by the value of `max_allowed_packet`. The syntax to change the value of `group_concat_max_len` at runtime:
+
+```sql
+SET SESSION group_concat_max_len = 2048;
+```
+
 See [stackoverflow answer](https://stackoverflow.com/a/276949/1921272).
 
 ## Show orphan rows
