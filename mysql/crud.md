@@ -87,6 +87,19 @@ WHERE id IN (
 );
 ```
 
+**Note:** We use this trick with virtual table to avoid similar error - *SQL (1093): Table 'products_point_sales' is specified twice, both as a target for 'UPDATE' and as a separate source for datauery* - in this *invalid query*:
+
+```sql
+-- NOTE: this query will produce error
+UPDATE `products_point_sales` SET status = 0
+WHERE id IN (
+    SELECT p.id
+    FROM products_point_sales p
+    LEFT JOIN `products_to_point_sales` s ON p.sap_id = s.point_sales_id
+    WHERE s.id IS NULL
+)
+```
+
 ## Delete
 
 ### Delete records by condition
