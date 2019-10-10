@@ -111,8 +111,10 @@ DELETE FROM products WHERE created_at <= '2019-05-01';
 **Delete records by batches**
 
 ```sql
-DELETE FROM claims_emarsys_log WHERE claim_id < 70229600 LIMIT 1000;
+DELETE FROM claims_emarsys_log WHERE claim_id < 70229600 ORDER BY claim_id LIMIT 1000;
 ```
+
+If you use `DELETE` with `LIMIT`, you should really use `ORDER BY` to make the query deterministic; not doing so would have strange effects (including breaking replication in some cases)
 
 ### Delete orphan rows
 
