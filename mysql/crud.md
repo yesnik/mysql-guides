@@ -108,6 +108,12 @@ WHERE id IN (
 DELETE FROM products WHERE created_at <= '2019-05-01';
 ```
 
+**Delete records by batches**
+
+```sql
+DELETE FROM claims_emarsys_log WHERE claim_id < 70229600 LIMIT 1000;
+```
+
 ### Delete orphan rows
 
 ```sql
