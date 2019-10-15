@@ -116,6 +116,14 @@ DELETE FROM claims_emarsys_log WHERE claim_id < 70229600 ORDER BY claim_id LIMIT
 
 If you use `DELETE` with `LIMIT`, you should really use `ORDER BY` to make the query deterministic; not doing so would have strange effects (including breaking replication in some cases)
 
+**Note:** Don't make limit too high:
+
+```sql
+-- Bad query. Don't do this!
+DELETE FROM products WHERE id < 5000100 ORDER BY id LIMIT 1000000;
+```
+It's a long running transaction. If you kill all mysql processes on server and try to start mysql again, mysql will try to rollback this transaction. In our case it took 30 mins to rollback deleting of 500000 rows.
+
 ### Delete orphan rows
 
 ```sql
