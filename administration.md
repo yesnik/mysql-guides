@@ -119,3 +119,23 @@ SHOW TABLE_STATISTICS;
 SHOW FULL PROCESSLIST;
 ```
 *Note:* Your user must have permission to view processes.
+
+## Kill all MySQL processes
+
+```bash
+killall mysqld mysqld_safe
+```
+
+Wait for 10 seconds atleast so that it shut down cleanly. Run this command to check whether still there are some mysqld process remained or not ?
+
+```bash
+ps aux | grep mysqld
+```
+
+If you still able to see more than run this command:
+
+```bash
+killall -9 mysqld mysqld_safe
+```
+
+**Note:** This command will kill all `mysqld` processes. If you start `mysql` it will try to rollback all transactions that were running when you killed `mysqld` processes.
