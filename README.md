@@ -1,3 +1,3 @@
 # SQL Guides
 
-SQL tips and solutions for MySQL, PostgreSQL
+SQL tips and solutions for MySQL
