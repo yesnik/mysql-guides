@@ -22,6 +22,10 @@ SHOW FULL TABLES WHERE Table_Type = 'BASE TABLE';
 ALTER TABLE products ADD COLUMN category_id INT(11) UNSIGNED NOT NULL;
 
 ALTER TABLE claims_info ADD COLUMN products_point_sales_id INT(11) UNSIGNED AFTER city_name;
+
+ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED 
+COMMENT 'ID of double claim'
+AFTER office_sap_id;
 ```
 **Important:** If MySQL version >= 5.6 you can add column [without locking](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html#online-ddl-column-operations) the whole table
 
