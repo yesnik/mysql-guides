@@ -47,6 +47,20 @@ Table `claims_cc` params: size 1.4Gb, 10.5 mln rows.
 
 **Note:** It seems that internally MySQL created copy of the table and then renamed it. So ensure that there is *enough free space* on the server.
 
+### Change / Modify column
+
+`CHANGE` is a MySQL extension to standard SQL. `MODIFY` is a MySQL extension for Oracle compatibility.
+
+```sql
+ALTER TABLE t1 CHANGE col_old col_new BIGINT NOT NULL;
+```
+
+`MODIFY` is more convenient to change the definition without changing the name because it *requires the column name only once*:
+
+```sql
+ALTER TABLE products MODIFY COLUMN type_id INT(11) UNSIGNED COMMENT 'ID of product type';
+```
+
 ### Drop column
 
 ```sql
