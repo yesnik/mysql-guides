@@ -74,6 +74,31 @@ sudo kill `cat /var/run/mariadb/mariadb.pid`
 service mariadb start
 ```
 
+## Shrink table
+
+### Get tables that have unused space
+
+This query shows tables that have more than 100Mb of unused free space 
+(`data_free` is the number of allocated but unused bytes).
+
+```sql
+SELECT TABLE_NAME, ROUND(data_length/1024/1024) AS data_length_mb, ROUND(data_free/1024/1024) AS data_free_mb
+FROM information_schema.tables
+WHERE ROUND(data_free/1024/1024) > 100
+ORDER BY data_free_mb;
+```
+
+### Optimize table
+
+[OPTIMIZE TABLE](https://dev.mysql.com/doc/refman/8.0/en/optimize-table.html) query reorganizes the physical storage of table data and associated index data, to reduce storage space.
+
+```sql
+OPTIMIZE TABLE products;
+```
+
+**Important:** This query locks table for read and write.
+
+
 ## Duplicate table
 
 ### Copy with indexes and triggers
