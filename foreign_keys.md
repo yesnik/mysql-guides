@@ -107,14 +107,30 @@ We need to know foreign key's name to remove it from table:
 ALTER TABLE claims_log DROP FOREIGN KEY fk_claims_log_claim_id;
 ```
 
+**Important:**
+
+We tried to drop foreign key and this operation locked DB.
+
+```sql
+MariaDB [sales]> alter table claims_cc drop foreign key fk_claims_cc_products_point_sales_id;
+
+^CCtrl-C -- query killed. Continuing normally.
+ERROR 1317 (70100): Query execution was interrupted
+```
+
+Fortunatelly, we cancelled this query with `Ctrl + C` and our database became available again - for read / write operations.
+
+Server info:
+- Server version: 10.1.37-MariaDB MariaDB Server
+- claims_cc - 4 mln rows, size - 1 Gb
+
 **Notes:** 
 
-1. Dropping a foreign key can be [performed online](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html) with the `foreign_key_checks` option enabled or disabled.
-2. This query will help you to get the foreign key's name:
+1. This query will help you to get the foreign key's name:
 ```sql
 SHOW CREATE TABLE table_name;
 ```
-3. It took 0 sec to drop foreign key on the table with size 220 Mb, 0.5 mln rows
+2. It took 0 sec to drop foreign key on the table with size 220 Mb, 0.5 mln rows
 
 ## Show foreign keys
 
