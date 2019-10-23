@@ -98,6 +98,20 @@ OPTIMIZE TABLE products;
 
 **Important:** This query locks table for read and write.
 
+## Using mysqlcheck
+
+[mysqlcheck](https://mariadb.com/kb/en/library/mysqlcheck/) is a maintenance tool that allows you to check, repair, analyze and optimize multiple tables from the command line.
+
+```bash
+# Check tables in database
+mysqlcheck --database mydatabase -u root -pMyPass
+
+# Analyze tables
+mysqlcheck --analyze --database mydatabase -u root -pMyPass
+
+# Optimize tables
+mysqlcheck --optimize --database mydatabase -u root -pMyPass
+```
 
 ## Duplicate table
 
