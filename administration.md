@@ -106,12 +106,14 @@ OPTIMIZE TABLE products;
 # Check tables in database
 mysqlcheck --database mydatabase -u root -pMyPass
 
-# Analyze tables
-mysqlcheck --analyze --database mydatabase -u root -pMyPass
-
 # Optimize tables
 mysqlcheck --optimize --database mydatabase -u root -pMyPass
+
+# Analyze tables
+mysqlcheck --analyze --database mydatabase -u root -pMyPass
 ```
+
+InnoDb tables doesn't support `optimize`, so `recreate + analyze` will be executed instead.
 
 ## Duplicate table
 
