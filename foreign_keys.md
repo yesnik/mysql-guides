@@ -17,16 +17,21 @@ set FOREIGN_KEY_CHECKS=1;
 This setting disables foreign key checks for current session only.
 Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
 
-**Important** 
+**Our experience** 
 
-1. Be careful with adding foreign key on production, because it might be a heavy operation for you database. 
-For example, we created empty table and tried to create foreign key to existing big table (12 Gb size, 9 mln rows). 
-This operation *made our database to shut down*. Here is server info:
+Server info:
 
 - mysql Ver 15.1 Distrib 10.1.37-MariaDB, for Linux (x86_64) using readline 5.1.
 - RAM 20Gb
 
-2. We tried to add foreign key on big table `claims_import` (220 Mb, 0.5 mln rows) to small one `call_results` (20 rows):
+*Example 1* 
+
+We created empty table and tried to create the foreign key to existing big table (12 Gb size, 9 mln rows). 
+This operation *made our database to shut down*. 
+
+*Example 2*
+
+We tried to add the foreign key on a big table `claims_import` (220 Mb, 0.5 mln rows) to small one `call_results` (20 rows):
 
 ```sql
 ALTER TABLE claims_import 
@@ -35,7 +40,7 @@ REFERENCES call_results (id);
 -- Query OK, 597870 rows affected (14.43 sec)
 ```
 
-During running this query *both tables will be locked for modifications*:
+During running this query *both tables was locked for modifications*:
 
 - in the big table `claims_import`:
   - we CANNOT insert, update, delete records 
@@ -44,23 +49,26 @@ During running this query *both tables will be locked for modifications*:
   - we CANNOT insert, update, delete records 
   - we CAN read
 
-**Note:** We tried to add foreign key to another table (that has 20 inserts per minute), but got an error:
+*Example 3*
+
+We tried to add the foreign key to another table, but got an error:
 *ERROR 1823 (HY000): Failed to add the foreign key constraint 'sales/fk_claims_sms_call_result_id' to system tables*.
 
-To fix this try to see system table:
+We checked system table:
 
 ```sql
 select * from information_schema.INNODB_SYS_FOREIGN;
 ```
 
-There can be a record for trigger that already exists in this system table. We need to delete it:
+There can be a record for foreign key that already exists in this system table. Why? 
+Before this error we cancelled the query for adding foreign key. It seems that MySQL cancelled query but didn't delete value from this system table.
 
 ```sql
 delete from information_schema.INNODB_SYS_FOREIGN where for_name = 'sales/#sql-10d1_3dcfb';
 -- ERROR 1044 (42000): Access denied for user 'root'@'localhost' to database 'information_schema'
 ```
 
-Why? Because `INFORMATION_SCHEMA` is a database within each MySQL instance, the place that stores information about all the other databases that the MySQL server maintains. The `INFORMATION_SCHEMA` database contains several read-only tables. They are actually views, not base tables, so there are no files associated with them, and you cannot set triggers on them. Also, there is no database directory with that name.
+There is no safe way to delete this record from this table because `INFORMATION_SCHEMA` is a database within each MySQL instance, the place that stores information about all the other databases that the MySQL server maintains. The `INFORMATION_SCHEMA` database contains several read-only tables. They are actually views, not base tables, so there are no files associated with them, and you cannot set triggers on them. Also, there is no database directory with that name.
 
 Although you can select `INFORMATION_SCHEMA` as the default database with a USE statement, you can only read the contents of tables, not perform INSERT, UPDATE, or DELETE operations on them.
 
@@ -113,7 +121,7 @@ This query will help you to get the foreign key's name:
 SHOW CREATE TABLE table_name;
 ```
 
-**Important:**
+**Our experience**
 
 [Documentation](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html) says that dropping a foreign key can be *performed online* with the `foreign_key_checks` option enabled or disabled. But it's not that simple.
 
