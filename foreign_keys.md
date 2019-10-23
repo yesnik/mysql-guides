@@ -107,30 +107,47 @@ We need to know foreign key's name to remove it from table:
 ALTER TABLE claims_log DROP FOREIGN KEY fk_claims_log_claim_id;
 ```
 
-**Important:**
-
-We tried to drop foreign key and this operation locked DB.
+This query will help you to get the foreign key's name:
 
 ```sql
-MariaDB [sales]> alter table claims_cc drop foreign key fk_claims_cc_products_point_sales_id;
-
-^CCtrl-C -- query killed. Continuing normally.
-ERROR 1317 (70100): Query execution was interrupted
+SHOW CREATE TABLE table_name;
 ```
 
-Fortunatelly, we cancelled this query with `Ctrl + C` and our database became available again - for read / write operations.
+**Important:**
+
+[Documentation](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html) says that dropping a foreign key can be *performed online* with the `foreign_key_checks` option enabled or disabled. But it's not that simple.
+
+*Try 1*: We executed this query:
+
+```sql
+alter table claims_cc drop foreign key fk_claims_cc_products_point_sales_id;
+
+-- ^CCtrl-C -- query killed. Continuing normally.
+-- ERROR 1317 (70100): Query execution was interrupted
+```
+This operation *locked* this table, and clients cannot use our site.
+Fortunatelly, we cancelled this query with `Ctrl + C` and site became available again.
 
 Server info:
 - Server version: 10.1.37-MariaDB MariaDB Server
 - claims_cc - 4 mln rows, size - 1 Gb
 
-**Notes:** 
+*Try 2*: 
 
-1. This query will help you to get the foreign key's name:
+1. In [HeidiSQL](https://www.heidisql.com/) client we monitored processlist on MySQL server. We disabled scripts that interacted with this table (background jobs) and ensured that there are no frequent updates or delete operations on our table.
+
+2. In another console window we executed queries:
+
 ```sql
-SHOW CREATE TABLE table_name;
+set FOREIGN_KEY_CHECKS=0;
+
+alter table claims_cc drop foreign key fk_claims_cc_products_point_sales_id;
+-- Query OK, 0 rows affected (0.20 sec)
+-- Records: 0  Duplicates: 0  Warnings: 0
+
+set FOREIGN_KEY_CHECKS=1;
 ```
-2. It took 0 sec to drop foreign key on the table with size 220 Mb, 0.5 mln rows
+It was a successful try this time - foreign key has been deleted.
 
 ## Show foreign keys
 
