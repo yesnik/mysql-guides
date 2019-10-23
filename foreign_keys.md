@@ -2,7 +2,7 @@
 
 ## Add foreign key
 
-**Add foreign key without locking tables**
+### Add foreign key without locking tables
 
 ```sql
 set FOREIGN_KEY_CHECKS=0;
@@ -17,7 +17,7 @@ set FOREIGN_KEY_CHECKS=1;
 This setting disables foreign key checks for current session only.
 Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
 
-**Important notes:** 
+**Important** 
 
 1. Be careful with adding foreign key on production, because it might be a heavy operation for you database. 
 For example, we created empty table and tried to create foreign key to existing big table (12 Gb size, 9 mln rows). 
