@@ -27,6 +27,7 @@ ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED
 COMMENT 'ID of double claim'
 AFTER office_sap_id;
 ```
+
 **Important:** If MySQL version >= 5.6 you can add column [without locking](https://dev.mysql.com/doc/refman/5.6/en/innodb-online-ddl-operations.html#online-ddl-column-operations) the whole table
 
 ```sql
@@ -36,6 +37,10 @@ Concurrent DML is not permitted when adding an auto-increment column. Data is re
 
 Some [people say](https://medium.com/practo-engineering/mysql-zero-downtime-schema-update-without-algorithm-inplace-fd427ec5b681) that INPLACE algorithm is not working with big tables.
 
+**Our experience**
+
+*Example 1*
+
 We have *10.1.37-MariaDB MariaDB Server*, this query allowed us to add new column to table (size 1.4Gb, 10.5 mln rows) without locking read, update, insert operations:
 
 ```sql
@@ -43,7 +48,15 @@ ALTER TABLE claims_cc ADD COLUMN call_result_id INT(11) UNSIGNED AFTER crm_statu
 -- Query OK, 0 rows affected (4 min 10.59 sec)
 ```
 
-**Note:** It seems that internally MySQL created copy of the table and then renamed it. So ensure that there is *enough free space* on the server.
+*Example 2*
+
+We added new column to the table (size 2.5 Gb, 11 mln rows) without locking read, update, instart operations:
+
+```sql
+ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED COMMENT 'ID of double claim' AFTER office_sap_id;
+```
+
+**Important:** Internally MySQL creates the copy of the table and then rename it. So ensure that there is *enough free space* on the server.
 
 ### Change / Modify column
 
