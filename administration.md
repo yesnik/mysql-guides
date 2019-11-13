@@ -18,9 +18,19 @@ mysqldump --no-data -u root -p123 sales > dump.sql
 
 ### Create table dump
 
+**With drop, create table**
+
 ```bash
 mysqldump -u USER -pPASSWORD mydbname --tables products users > dump.sql
 ```
+
+**Only data - without drop, create table**
+
+```bash
+mysqldump -u USER -pPASSWORD mydbname --skip-add-drop-table --no-create-info --tables products_point_sales products_to_point_sales > dump.sql
+```
+
+**Only data - with WHERE condition**
 
 ```bash
 mysqldump -u USER -pPASSWORD mydbname --skip-add-drop-table --no-create-info --tables products --where="id > 10000" > products_delta_dump.sql
