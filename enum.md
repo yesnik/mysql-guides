@@ -5,7 +5,7 @@
 ### Add to existing table
 
 ```sql
-ALTER TABLE call_results ADD COLUMN crm_status2 ENUM('','E0004','E0005') NOT NULL;
+ALTER TABLE call_results ADD COLUMN crm_status ENUM('','E0004','E0005') NOT NULL;
 ```
 
 ### Add with `create table` statement
@@ -27,7 +27,7 @@ If you omit the value of ENUM field in the query the inserted value will be `''`
 INSERT INTO call_results (title) VALUES ('Hello');
 ```
 
-#### Table call_results
+*Table `call_results`*
 
 | id | crm_status | title | 
 | ---: | --- | --- | 
@@ -38,3 +38,17 @@ INSERT INTO call_results (title) VALUES ('Hello');
 ```sql
 ALTER TABLE call_results MODIFY COLUMN crm_status enum('','E0004','E0005') NOT NULL;
 ```
+**Note:** If you want to add *a new ENUM value* to a big existing table, it's better to add this value to the end of ENUM list.
+
+*Example*
+
+Suppose that table has field `crm_status enum('','E0004','E0005') NOT NULL`.
+
+- This query will *affect 0 rows* (fast query): 
+  ```
+  ALTER TABLE call_results MODIFY COLUMN crm_status enum('','E0004','E0005','new') NOT NULL;
+  ```
+- This query will affect *ALL rows* (because we are changing the order of existing values in the list):
+  ```
+  ALTER TABLE call_results MODIFY COLUMN crm_status enum('','new','E0004','E0005') NOT NULL;
+  ```
