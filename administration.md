@@ -16,15 +16,25 @@ mysqldump -u root -p123 DATABASE | gzip > dump.sql.gz
 mysqldump --no-data -u root -p123 sales > dump.sql
 ```
 
-### Create table dump
+### Create table or many tables dump
 
 **With drop, create table**
 
+This command will create dump for 2 tables:
+
 ```bash
-mysqldump -u USER -pPASSWORD mydbname --tables products users > dump.sql
+# Create .sql file
+mysqldump -u USER -pPASSWORD mydbname --tables table_one table_two > dump.sql
+
+# Create .gz archive
+mysqldump -u USER -pPASSWORD mydbname --tables table_one table_two | gzip > dump.sql.gz
 ```
 
+This dump has `DROP TABLE IF EXISTS` and `CREATE TABLE` statements for each table.
+
 **Only data - without drop, create table**
+
+If we want to exclude `DROP TABLE` and `CREATE TABLE` queries from dump, we need use `--skip-add-drop-table`, `--no-create-info` options.
 
 ```bash
 mysqldump -u USER -pPASSWORD mydbname --skip-add-drop-table --no-create-info --tables products_point_sales products_to_point_sales > dump.sql
