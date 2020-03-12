@@ -7,14 +7,16 @@
 *Create .gz archive*
 
 ```
-mysqldump -u root -p123 DATABASE | gzip > dump.sql.gz
+mysqldump -u root -p123 DATABASE --single-transaction | gzip > dump.sql.gz
 ```
 
 *Create schema only (without data):*
 
 ```
-mysqldump --no-data -u root -p123 sales > dump.sql
+mysqldump --no-data -u root -p123 --single-transaction sales > dump.sql
 ```
+
+**Important:** If you are dumping InnoDB tables use the `--single-transaction` option to prevent tables locking.
 
 ### Create table or many tables dump
 
