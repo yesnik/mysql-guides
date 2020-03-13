@@ -48,3 +48,32 @@ For MySQL >= 5.6
 ```sql
 SELECT * FROM sys.schema_unused_indexes;
 ```
+
+## Using indexes
+
+### Quotes in value matters
+
+Suppose that we have table `claims`:
+
+```sql
+CREATE TABLE `claims` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`crm_task_id` VARCHAR(100) NOT NULL,
+
+	PRIMARY KEY (`id`),
+	INDEX `crm_task_id` (`crm_task_id`),
+)
+ENGINE=InnoDB;
+```
+
+Similar queries:
+
+```sql
+-- Index on 'crm_task_id' is NOT USED
+SELECT * FROM claims c WHERE crm_task_id IN ( 1465110897 )
+
+-- Index on 'crm_task_id' is used
+SELECT * FROM claims c WHERE crm_task_id IN ( '1465110897' )
+```
+
+Tested on *10.1.37-MariaDB* server.
