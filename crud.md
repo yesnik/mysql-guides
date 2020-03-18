@@ -8,6 +8,12 @@
 INSERT INTO tbl_name (a, b) VALUES (1, 2), (3, 4), (5, 6);
 ```
 
+### Replace records
+
+```sql
+REPLACE INTO tbl_name (a, b) VALUES (1, 2), (3, 4);
+```
+
 ### Copy data in backup table
 
 ```sql
