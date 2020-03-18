@@ -2,6 +2,12 @@
 
 ## Create
 
+### Batch insert
+
+```sql
+INSERT INTO tbl_name (a, b) VALUES(1, 2), (3, 4), (5, 6);
+```
+
 ### Copy data in backup table
 
 ```sql
