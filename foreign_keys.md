@@ -157,6 +157,14 @@ set FOREIGN_KEY_CHECKS=1;
 ```
 It was a successful try this time - foreign key has been deleted.
 
+*Try 3*: It took 8 seconds.
+
+```sql
+alter table claims_info drop foreign key fk_claims_info_products_point_sales_id;
+-- Query OK, 0 rows affected (7.78 sec)
+-- Records: 0  Duplicates: 0  Warnings: 0
+```
+
 ## Show foreign keys
 
 Show info from [innodb_sys_foreign](https://dev.mysql.com/doc/refman/5.7/en/innodb-sys-foreign-table.html) table:
