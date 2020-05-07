@@ -7,15 +7,16 @@
 ```sql
 set FOREIGN_KEY_CHECKS=0;
 
-ALTER TABLE claims_import ADD CONSTRAINT fk_claims_import_call_result_id 
-FOREIGN KEY (call_result_id) REFERENCES call_results (id);
--- Query OK, 0 rows affected (0.00 sec)
+ALTER TABLE books ADD CONSTRAINT fk_books_author_id 
+FOREIGN KEY (author_id) REFERENCES authors (id);
 
 set FOREIGN_KEY_CHECKS=1;
 ```
 
-This setting disables foreign key checks for current session only.
-Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks): If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
+**Notes:** 
+
+- Foreign keys in MySQL automatically create an index on the table. In this example index `fk_books_author_id` will be created at column `books.author_id`.
+- Setting [FOREIGN_KEY_CHECKS](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_foreign_key_checks) disables foreign key checks for current session only. If set to `1` (the default), foreign key constraints for InnoDB tables are checked. If set to `0`, foreign key constraints are ignored, with a couple of exceptions.
 
 **Our experience** 
 
