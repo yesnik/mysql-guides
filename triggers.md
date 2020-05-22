@@ -15,8 +15,11 @@ FROM information_schema.triggers;
 
 ## Create trigger
 
-*Important*: Creating trigger usually doesn't lock the table. Tested on *10.1.37-MariaDB MariaDB Server*.
-- create trigger on table `claims_settings` (2.5 Gb, 12 mln rows), it took 0 sec.
+*Important*: Creating trigger doesn't lock the table. Tested on *10.1.37-MariaDB MariaDB Server*.
+- table `claims_settings` (2.5 Gb, 12 mln rows), took 0 sec.
+- table `claims_cc` (1 Gb, 1 mln rows), took 0 sec.
+
+*Important*: But on *MariaDB 5.5.36* creating trigger locked the table. It took *48 sec.* to create trigger on the table with 13 mln rows.
 
 ### Trigger that makes insert in another table on condition
 
@@ -98,7 +101,11 @@ It uses `<=>` - [NULL-safe equal operator](https://mariadb.com/kb/en/null-safe-e
 
 ## Drop trigger
 
-*Important*: Dropping trigger locks table. It took *38 sec.* to drop trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
+*Important*: Dropping trigger doesn't lock the table. Tested on *10.1.37-MariaDB MariaDB Server*.
+- table `claims_settings` (2.5 Gb, 12 mln rows), took 0 sec.
+- table `claims_cc` (1 Gb, 1 mln rows), took 0 sec.
+
+*Important*: But on *MariaDB 5.5.36)* dropping trigger locked the table. It took *38 sec.* to drop trigger on the table with 13 mln rows.
 
 ```sql
 DROP TRIGGER IF EXISTS claims_log_create;
