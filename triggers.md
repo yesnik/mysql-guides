@@ -82,6 +82,18 @@ CREATE TABLE claims_calls (
 );
 ```
 
+### Trigger for logging column changes
+
+```sql
+CREATE TRIGGER `claims_settings__after_update` AFTER UPDATE ON `claims_settings` FOR EACH ROW BEGIN
+    IF NOT (OLD.`queue` <=> NEW.`queue`) THEN
+        INSERT INTO `claims_audit`(`claim_id`, `user`, `table`, `field`, `value_old`, `value_new`) 
+        VALUES (OLD.`claim_id`,  USER(), 'claims_settings', 'queue', OLD.`queue`, NEW.`queue`);
+    END IF;
+END
+```
+It uses `<=>` - [NULL-safe equal operator](https://mariadb.com/kb/en/null-safe-equal/).
+
 ## Drop trigger
 
 *Important*: Dropping trigger locks table. It took *38 sec.* to drop trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
