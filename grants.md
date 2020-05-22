@@ -59,6 +59,12 @@ to see threads belonging to other accounts.
 GRANT PROCESS ON *.* TO 'kenny'@'%';
 ```
 
+## Grant TRIGGER
+
+```sql
+GRANT TRIGGER ON mydb.* TO 'kenny'@'%';
+```
+
 ## Grant ALL
 
 ### For all databases
