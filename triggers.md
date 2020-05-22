@@ -15,7 +15,8 @@ FROM information_schema.triggers;
 
 ## Create trigger
 
-*Important*: Creating trigger locks table. It took *48 sec.* to add trigger on table with 13 million records *(tested on MariaDB 5.5.36)*
+*Important*: Creating trigger usually doesn't lock the table. Tested on *10.1.37-MariaDB MariaDB Server*.
+- create trigger on table `claims_settings` (2.5 Gb, 12 mln rows), it took 0 sec.
 
 ### Trigger that makes insert in another table on condition
 
@@ -37,6 +38,7 @@ DELIMITER ;
 ### Throw exception in trigger
 
 ```sql
+DELIMITER //
 CREATE TRIGGER claims_log_create AFTER UPDATE ON claims 
 FOR EACH ROW
 BEGIN
