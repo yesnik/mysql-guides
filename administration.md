@@ -92,7 +92,7 @@ FLUSH PRIVILEGES;
 ```
 
 5. Kill mysql process that we started recently
-```
+```bash
 # For MariaDb
 sudo kill `sudo cat /var/run/mariadb/mariadb.pid`
 
