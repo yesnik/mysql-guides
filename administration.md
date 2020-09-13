@@ -92,7 +92,11 @@ flush privileges;
 
 5. Kill mysql process that we started recently
 ```
-sudo kill `cat /var/run/mariadb/mariadb.pid`
+# For MariaDb
+sudo kill `sudo cat /var/run/mariadb/mariadb.pid`
+
+# For MySQL
+sudo kill `sudo cat /var/run/mysqld/mysqld.pid`
 ```
 
 * Start mysql service in usual way
