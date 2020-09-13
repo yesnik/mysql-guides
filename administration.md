@@ -86,8 +86,8 @@ mysql -u root
 4. Execute queries
 ```sql
 USE mysql;
-UPDATE user SET password=PASSWORD("password") WHERE User='root';
-flush privileges;
+UPDATE user SET authentication_string = password('root') WHERE User = 'root' AND host = 'localhost';
+FLUSH PRIVILEGES;
 ```
 
 5. Kill mysql process that we started recently
