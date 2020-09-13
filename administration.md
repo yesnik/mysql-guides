@@ -86,7 +86,7 @@ mysql -u root
 4. Execute queries
 ```sql
 USE mysql;
-UPDATE user SET password=PASSWORD("123") WHERE User='root';
+UPDATE user SET password=PASSWORD("password") WHERE User='root';
 flush privileges;
 ```
 
