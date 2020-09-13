@@ -85,8 +85,9 @@ mysql -u root
 
 4. Execute queries
 ```sql
+FLUSH PRIVILEGES;
 USE mysql;
-UPDATE user SET authentication_string = password('root') WHERE User = 'root' AND host = 'localhost';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123';
 FLUSH PRIVILEGES;
 ```
 
