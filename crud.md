@@ -112,6 +112,14 @@ WHERE id IN (
 )
 ```
 
+### Conditional update
+
+```sql
+UPDATE products 
+    SET amount = IF(amount > 0, amount - 1, 0)
+WHERE id = 1480;
+```
+
 ## Delete
 
 ### Delete records by condition
