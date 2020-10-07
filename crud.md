@@ -126,12 +126,12 @@ WHERE id = 1480;
 
 ```sql
 UPDATE products 
-	SET amount = CASE
-		WHEN amount > 0 THEN
-			amount - 1
-		ELSE
-			0
-		END 
+    SET amount = CASE
+        WHEN amount > 0 THEN
+            amount - 1
+        ELSE
+            0
+    END 
 WHERE id = 1480;
 ```
 
