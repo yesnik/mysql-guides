@@ -114,9 +114,24 @@ WHERE id IN (
 
 ### Conditional update
 
+**Using `IF`**
+
 ```sql
 UPDATE products 
     SET amount = IF(amount > 0, amount - 1, 0)
+WHERE id = 1480;
+```
+
+**Using `CASE WHEN`**
+
+```sql
+UPDATE products 
+	SET amount = CASE
+		WHEN amount > 0 THEN
+			amount - 1
+		ELSE
+			0
+		END 
 WHERE id = 1480;
 ```
 
