@@ -50,17 +50,23 @@ mysqldump -u USER -pPASSWORD mydbname --skip-add-drop-table --no-create-info --t
 
 ### Import database dump
 
-- **.gz archive**
+**.sql**
+
+```
+mysql -u USER -pPASSWORD DATABASE < dump.sql
+```
+
+**.gz archive**
 ```
 gunzip < /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
 ```
 or
 ```
-zcat /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
+zcat /path/to/dump.sql.gz | mysql -u USER -pPASSWORD DATABASE
 ```
-- **.zip archive**
+**.zip archive**
 ```
-unzip -p db-dump.zip | mysql -u USER -pPASSWORD DATABASE
+unzip -p dump.zip | mysql -u USER -pPASSWORD DATABASE
 ```
 Here `-p` flag pipes the output.
 
