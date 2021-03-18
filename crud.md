@@ -84,6 +84,16 @@ WHERE u.id IS NULL
 
 This query will select ID of articles that don't have authors in corresponding table.
 
+### Like multiple values
+
+Find rows with title starts with `Hot` or `Cool`:
+
+```sql
+SELECT * FROM books WHERE title LIKE 'Hot%' OR LIKE 'Cool%';
+
+SELECT * FROM books WHERE title REGEXP '^Hot|^Cool';
+```
+
 ## Update
 
 ### Update table based on condition
