@@ -50,7 +50,7 @@ ALTER TABLE claims_cc ADD COLUMN call_result_id INT(11) UNSIGNED AFTER crm_statu
 
 *Example 2*
 
-We added new column to the table without locking read, update, instart operations:
+We added new column to the table without locking read, update, insert operations:
 
 ```sql
 -- Table size: 2.5 Gb, 11 mln rows
