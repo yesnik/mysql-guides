@@ -50,10 +50,17 @@ ALTER TABLE claims_cc ADD COLUMN call_result_id INT(11) UNSIGNED AFTER crm_statu
 
 *Example 2*
 
-We added new column to the table (size 2.5 Gb, 11 mln rows) without locking read, update, instart operations:
+We added new column to the table without locking read, update, instart operations:
 
 ```sql
+-- Table size: 2.5 Gb, 11 mln rows
 ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED COMMENT 'ID of double claim' AFTER office_sap_id;
+```
+
+```sql
+-- Table size: 256 Mb, 1.5 mld rows
+ALTER TABLE claims_settings ADD COLUMN `double` INT(11) NOT NULL AFTER rule;
+-- Query OK, 0 rows affected (41.80 sec)
 ```
 
 **Important:** Internally MySQL creates the copy of the table and then renames it. So ensure that there is *enough free space* on the server.
