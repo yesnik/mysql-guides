@@ -56,7 +56,7 @@ We added new column to the table (size 2.5 Gb, 11 mln rows) without locking read
 ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED COMMENT 'ID of double claim' AFTER office_sap_id;
 ```
 
-**Important:** Internally MySQL creates the copy of the table and then rename it. So ensure that there is *enough free space* on the server.
+**Important:** Internally MySQL creates the copy of the table and then renames it. So ensure that there is *enough free space* on the server.
 
 ### Change / Modify column
 
