@@ -58,7 +58,7 @@ ALTER TABLE claims_params ADD COLUMN double_claim_id INT(11) UNSIGNED COMMENT 'I
 ```
 
 ```sql
--- Table size: 256 Mb, 1.5 mld rows
+-- Table size: 2.5 Gb (before), 256 Mb (after the column was added), 1.5 mln rows
 ALTER TABLE claims_settings ADD COLUMN `double` INT(11) NOT NULL AFTER rule;
 -- Query OK, 0 rows affected (41.80 sec)
 ```
