@@ -14,6 +14,8 @@ CREATE USER 'kenny'@'localhost' IDENTIFIED BY 'some_password';
 CREATE USER 'kenny'@'%' IDENTIFIED BY 'some_password';
 ```
 
+*See*: [give privileges to a user](grants.md)
+
 ## Drop user
 
 ```sql
