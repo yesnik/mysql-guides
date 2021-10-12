@@ -63,6 +63,12 @@ ALTER TABLE claims_settings ADD COLUMN `double` INT(11) NOT NULL AFTER rule;
 -- Query OK, 0 rows affected (41.80 sec)
 ```
 
+```sql
+-- Table size: 1.8 Gb, 1.4 mln rows
+ALTER TABLE claims ADD COLUMN utm_content VARCHAR(255) NOT NULL AFTER ldg_utm_medium;
+-- Query OK, 0 rows affected (2 min 16.18 sec)
+```
+
 **Important:** Internally MySQL creates the copy of the table and then renames it. So ensure that there is *enough free space* on the server.
 
 ### Change / Modify column
