@@ -23,7 +23,10 @@ SELECT * FROM information_schema.user_privileges;
 ## Grant SELECT
 
 ```sql
-GRANT select ON sales.products TO 'kenny'@'%';
+-- Grant to whole DB sales
+GRANT SELECT ON `sales`.* TO 'kenny'@'localhost';
+-- Grant to only one table
+GRANT SELECT ON sales.products TO 'kenny'@'%';
 FLUSH PRIVILEGES;
 ```
 
