@@ -2,17 +2,18 @@
 
 ## Create user 
 
-- with local access
-
-```sql
-CREATE USER 'kenny'@'localhost' IDENTIFIED BY 'some_password';
-```
-
-- with remote access
-
-```sql
-CREATE USER 'kenny'@'%' IDENTIFIED BY 'some_password';
-```
+- With local access
+  ```sql
+  CREATE USER 'kenny'@'localhost' IDENTIFIED BY 'some_password';
+  ```
+- With remote access
+  ```sql
+  CREATE USER 'kenny'@'%' IDENTIFIED BY 'some_password';
+  ```
+- With the password marked expired so that the user must choose a new one at the first connection to the server
+  ```sql
+  CREATE USER 'kenny'@'localhost' IDENTIFIED BY '12345' PASSWORD EXPIRE;
+  ```
 
 *See*: [give privileges to a user](grants.md)
 
