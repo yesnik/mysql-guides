@@ -16,7 +16,9 @@ mysqldump --no-data -u root -p123 sales > dump.sql
 mysqldump --single-transaction -u root -p123 DATABASE | gzip > dump.sql.gz
 ```
 
-**Important:** If you are dumping InnoDB tables use the `--single-transaction` option to prevent tables locking.
+**Important:** If you are dumping InnoDB tables use the `--single-transaction` option to prevent tables locking. This option sets the transaction isolation mode to REPEATABLE READ and sends a START TRANSACTION SQL statement to the server before dumping data. It is useful only with transactional tables such as InnoDB, because then it dumps the consistent state of the database at the time when START TRANSACTION was issued without blocking any applications.
+
+When using this option, you should keep in mind that only InnoDB tables are dumped in a consistent state. For example, any MyISAM or MEMORY tables dumped while using this option may still change state.
 
 ### Create table or many tables dump
 
