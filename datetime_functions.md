@@ -21,3 +21,9 @@ SELECT from_unixtime(1501651076); -- 2017-08-02 05:17:56
 ```sql
 SELECT * FROM claims WHERE created_at > (NOW() - INTERVAL 1 day);
 ```
+
+## Show date in 1 month
+  ```sql
+  SELECT CURDATE() + interval 1 MONTH;
+  -- 2022-04-10
+  ```
