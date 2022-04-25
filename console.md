@@ -1,4 +1,4 @@
-# Mysql console
+# Console
 
 ### Execute SQL query
 
