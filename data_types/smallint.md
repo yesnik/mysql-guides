@@ -10,7 +10,7 @@ If a column has been set to ZEROFILL, all values will be prepended by zeros so t
 
 ```sql
 CREATE TABLE `students` (
-	`score` SMALLINT UNSIGNED NOT NULL
+    `score` SMALLINT UNSIGNED NOT NULL
 );
 ```
 
@@ -24,6 +24,21 @@ Insert too big value:
 
 ```sql
 INSERT INTO students (score) VALUES (65536);
-Query OK, 1 row affected, 1 warning (0.00 sec)
+-- Query OK, 1 row affected, 1 warning (0.00 sec)
+-- score = 65535 will be inserted
 ```
 *Warning:* Out of range value for column 'score' at row 1
+
+## Zerofill
+
+```sql
+CREATE TABLE `students` (
+    `score` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL
+);
+```
+We can write `SMALLINT`, without argument. It'll be the same as `SMALLINT(5)`.
+
+```sql
+INSERT INTO students (score) VALUES (5);
+-- score = 005 will be inserted
+```
