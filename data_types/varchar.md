@@ -10,7 +10,7 @@ CREATE TABLE `urls` (
 );
 ```
 
-Insert big string:
+### Long string will be truncated
 
 ```sql
 INSERT INTO urls (url) VALUES ('... String with length 501 chars ...');
