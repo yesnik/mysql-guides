@@ -94,6 +94,15 @@ SELECT * FROM books WHERE title LIKE 'Hot%' OR LIKE 'Cool%';
 SELECT * FROM books WHERE title REGEXP '^Hot|^Cool';
 ```
 
+### Where column value matches regular expression
+
+```sql
+SELECT * FROM users WHERE first_name RLIKE '.+ .+';
+```
+It will return space separated records `Anna Marie`, `Jean Pol`.
+
+Note: `REGEXP` and `RLIKE` are synonyms for `REGEXP_LIKE()`
+
 ## Update
 
 ### Update table based on condition
