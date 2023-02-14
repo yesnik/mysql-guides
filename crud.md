@@ -185,3 +185,10 @@ DELETE a.* FROM articles a
 LEFT JOIN users u ON u.id = a.user_id
 WHERE u.id IS NULL
 ```
+
+```sql
+DELETE products_cities
+FROM products_cities
+LEFT JOIN products ON products_cities.product_id = products.crm_id
+WHERE products.id IS NULL
+```
