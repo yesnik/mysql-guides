@@ -19,3 +19,9 @@ Run config script:
 ```bash
 sudo mysql_secure_installation
 ```
+
+### Connect to database
+
+```bash
+mysql -u root -pSoMePassw -P 9310 -h 127.0.0.1 -D mydb_name
+```
