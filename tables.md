@@ -14,6 +14,12 @@ SHOW TABLES;
 SHOW FULL TABLES WHERE Table_Type = 'BASE TABLE';
 ```
 
+### Show tables info
+
+```sql
+SHOW TABLE STATUS
+```
+
 ## Alter table
 
 ### Add column
