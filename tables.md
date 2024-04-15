@@ -98,3 +98,25 @@ ALTER TABLE products AUTO_INCREMENT=10;
 ```
 
 This query sets autoincrement column to 10. It means that if you insert a new record it's ID will be 10.
+
+## Collation
+
+### Get default character set and collation for DB
+
+```sql
+SELECT @@character_set_database, @@collation_database
+```
+
+### Get tables collation
+
+```sql
+SELECT TABLE_SCHEMA, TABLE_NAME, TABLE_COLLATION
+FROM INFORMATION_SCHEMA.TABLES
+```
+
+### Get columns collation
+
+```sql
+SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLLATION_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS
+```
