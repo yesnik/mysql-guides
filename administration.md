@@ -115,6 +115,13 @@ service mariadb start
 
 ## Shrink table
 
+### Tables are stored at files
+
+Tables' data of database 'sales' are stored in files inside the directory: `/var/lib/mysql/sales`, e.g.:
+
+- `api_log.frm` - 12K
+- `api_log.ibd` - 64G
+
 ### Get tables that have unused space
 
 This query shows tables that have more than 100Mb of unused free space 
