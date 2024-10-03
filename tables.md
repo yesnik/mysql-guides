@@ -97,14 +97,6 @@ ALTER TABLE products MODIFY COLUMN type_id INT(11) UNSIGNED COMMENT 'ID of produ
 ALTER TABLE products DROP COLUMN updated_at
 ```
 
-### Set autoincrement
-
-```sql
-ALTER TABLE products AUTO_INCREMENT=10;
-```
-
-This query sets autoincrement column to 10. It means that if you insert a new record it's ID will be 10.
-
 ## Copy table
 
 ### Copy structure, indexes, triggers, without data
@@ -112,7 +104,15 @@ This query sets autoincrement column to 10. It means that if you insert a new re
 ```sql
 CREATE TABLE products_new LIKE products;
 ```
-Autoincrement value will be copied.
+Autoincrement value will NOT be copied.
+
+### Set autoincrement
+
+```sql
+ALTER TABLE products AUTO_INCREMENT=10;
+```
+
+This query sets autoincrement column to 10. It means that if you insert a new record it's ID will be 10.
 
 ### Insert data from old table
 
