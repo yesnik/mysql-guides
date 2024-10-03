@@ -105,6 +105,27 @@ ALTER TABLE products AUTO_INCREMENT=10;
 
 This query sets autoincrement column to 10. It means that if you insert a new record it's ID will be 10.
 
+## Copy table
+
+### Copy structure, indexes, triggers, without data
+
+```sql
+CREATE TABLE products_new LIKE products;
+```
+Autoincrement value will be copied.
+
+### Insert data from old table
+
+```sql
+INSERT INTO products_new SELECT * FROM products;
+```
+
+## Rename table
+
+```sql
+RENAME TABLE products TO products_old;
+```
+
 ## Collation
 
 ### Get default character set and collation for DB
