@@ -126,6 +126,13 @@ INSERT INTO products_new SELECT * FROM products;
 RENAME TABLE products TO products_old;
 ```
 
+## Truncate table
+
+```sql
+TRUNCATE TABLE api_log;
+```
+Our table's size was 63 Gb. This query took 1.9 sec. It resets AUTO_INCREMENT to 1.
+
 ## Collation
 
 ### Get default character set and collation for DB
