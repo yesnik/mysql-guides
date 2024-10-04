@@ -128,10 +128,14 @@ RENAME TABLE products TO products_old;
 
 ## Truncate table
 
+- This command empties a table completely. 
+- For and InnoDB table, if there are no FOREIGN KEY constraints, InnoDB performs fast truncation by dropping the original table and creating an empty one with the same defenition.
+- It resets AUTO_INCREMENT to 1.
+
 ```sql
 TRUNCATE TABLE api_log;
 ```
-Our table's size was 63 Gb. This query took 1.9 sec. It resets AUTO_INCREMENT to 1.
+Table size was 63 Gb. No foreign keys. This query took 1.9 sec. 
 
 ## Collation
 
