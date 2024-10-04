@@ -126,6 +126,15 @@ INSERT INTO products_new SELECT * FROM products;
 RENAME TABLE products TO products_old;
 ```
 
+## Optimize table
+
+You can use OPTIMIZE TABLE to reclaim the unused space and to defragment the data file.
+This operation frees the unused space and updates index statistics. It helps to shrink a table.
+
+```sql
+OPTIMIZE TABLE redirect_log;
+```
+
 ## Truncate table
 
 - This command empties a table completely. 
