@@ -35,11 +35,12 @@ ENGINE=InnoDB
 
 On Ver 15.1 Distrib 5.5.46-MariaDB this query produced an error:
 *SQLSTATE[Hy000]: General error: 1293 Incorrect table definition; there can be only one TIMESTAMP column with CURRENT_TIMESTAMP in DEFAULT or ON UPDATE clause*.
-For this DB we can only do manual update:
+
+For this legacy DB version we can only add one field:
 
 ```sql
 CREATE TABLE `articles` (
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,              -- Auto-initialized
-    updated_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00'  -- Manual updates only
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 ```
+On insert and update timestamp in this field will be updated.
