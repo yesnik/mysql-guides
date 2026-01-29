@@ -18,8 +18,7 @@ CREATE TABLE `call_results` (
 
 ## Legacy versions
 
-- It works for MySQL version >= 5.6
-- It was tested on Ver 15.1 Distrib 5.5.46-MariaDB
+It works for MySQL version >= 5.6:
 
 ```sql
 CREATE TABLE `articles` (
@@ -32,4 +31,15 @@ CREATE TABLE `articles` (
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
+```
+
+On Ver 15.1 Distrib 5.5.46-MariaDB this query produced an error:
+*SQLSTATE[Hy000]: General error: 1293 Incorrect table definition; there can be only one TIMESTAMP column with CURRENT_TIMESTAMP in DEFAULT or ON UPDATE clause*.
+For this DB we can only do manual update:
+
+```sql
+CREATE TABLE `articles` (
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,              -- Auto-initialized
+    updated_at TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00'  -- Manual updates only
+);
 ```
