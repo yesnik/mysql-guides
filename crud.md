@@ -103,6 +103,16 @@ It will return space separated records `Anna Marie`, `Jean Pol`.
 
 Note: `REGEXP` and `RLIKE` are synonyms for `REGEXP_LIKE()`
 
+### Escape character in LIKE
+
+Find strings containing a percent sign `%`:
+
+```sql
+SELECT * FROM products WHERE product_code LIKE '%\%%';
+
+SELECT * FROM products WHERE product_code LIKE '%!%%' ESCAPE '!';
+```
+
 ## Update
 
 ### Update table based on condition
